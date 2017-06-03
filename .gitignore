@@ -1,0 +1,13 @@
+/node_modules
+/dist
+/.tmp
+/.sass-cache
+/bower_components
+
+# Temporary, backup & MacOS dir
+*~
+*.lock
+*.DS_Store
+*.swp
+*.swo
+.ropeproject
