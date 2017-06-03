@@ -8,10 +8,9 @@
  # Controller of the sdgsDash
 ###
 angular.module 'sdgsDash'
-  .controller 'MainCtrl', ->
-    @awesomeThings = [
-      'HTML5 Boilerplate'
-      'AngularJS'
-      'Karma'
-    ]
-    return
+    .controller 'MainCtrl', ($scope, goal) ->
+
+        goal.query {}, (data) ->
+            $scope.goals = data
+
+        return
