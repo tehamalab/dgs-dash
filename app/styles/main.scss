@@ -1,22 +1,31 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+
+$fa-font-path: "../bower_components/font-awesome/fonts";
+
 $web-font-path: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700";
 @import url($web-font-path);
+
+$state-info-text:              #1A92B7;
 
 $font-family-sans-serif:  "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif;
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
 $font-family-base:        $font-family-sans-serif;
 
-$navbar-height:           80px;
+$navbar-height:            80px;
 
 $navbar-default-bg:        #fff;
-$navbar-default-border:    darken($navbar-default-bg, 6.5%) !default;
+$navbar-default-border:    darken($navbar-default-bg, 6.5%);
 
 $nav-link-padding: 10px 20px;
+
+$well-bg:                     #FAFAFA;
+$well-border:                 darken($well-bg, 6.5%);
 
 
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "font-awesome/scss/font-awesome.scss";
 // endbower
 
 .browsehappy {
@@ -58,6 +67,10 @@ body {
   }
 }
 
+.well{
+    box-shadow: none;
+}
+
 /* Supporting marketing content */
 .marketing {
   margin: 40px 0;
@@ -73,6 +86,14 @@ body {
 
 .sdg-img{
     max-width: 100%;
+}
+
+.listing{
+    padding-top: 20px;
+}
+
+.listing .indicator-target{
+    padding-bottom: 5px;
 }
 
 @media screen and (min-width: 768px) {

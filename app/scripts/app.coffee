@@ -29,6 +29,10 @@ angular
         templateUrl: 'views/about.html'
         controller: 'AboutCtrl'
         controllerAs: 'about'
+      .when '/goal/:id/:slug',
+        templateUrl: 'views/goal.html'
+        controller: 'GoalCtrl'
+        controllerAs: 'goal'
       .otherwise
         redirectTo: '/'
 
