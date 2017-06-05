@@ -1,7 +1,5 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 
-$fa-font-path: "../bower_components/font-awesome/fonts";
-
 $web-font-path: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700";
 @import url($web-font-path);
 
@@ -25,7 +23,6 @@ $well-border:                 darken($well-bg, 6.5%);
 
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-@import "font-awesome/scss/font-awesome.scss";
 // endbower
 
 .browsehappy {
