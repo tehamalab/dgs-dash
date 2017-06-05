@@ -17,7 +17,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'nvd3'
   ]
   .config ($routeProvider) ->
     $routeProvider
@@ -29,10 +30,14 @@ angular
         templateUrl: 'views/about.html'
         controller: 'AboutCtrl'
         controllerAs: 'about'
-      .when '/goal/:id/:slug',
+      .when '/goals/:id/:slug',
         templateUrl: 'views/goal.html'
         controller: 'GoalCtrl'
         controllerAs: 'goal'
+      .when '/indicators/:id',
+        templateUrl: 'views/indicator.html'
+        controller: 'IndicatorCtrl'
+        controllerAs: 'indicator'
       .otherwise
         redirectTo: '/'
 

@@ -1,0 +1,83 @@
+
+<div class="row">
+    <div ng-if="indicator.image_medium" class="col-sm-3"><img ng-src="{{ indicator.image_medium }}" class="sdg-img"></div>
+    <div class="col-sm-9">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-1 col-xs-2">
+                    <a ng-href="/#!/goals/{{ goal.id }}/{{ goal.slug }}">
+                        <img class="img-round" ng-src="{{ goal.image_small }}" style="max-height: 50px">
+                    </a>
+                </div>
+                <div class="col-sm-11 col-xs-10">
+                    <h5>
+                        <a ng-href="/#!/goals/{{ goal.id }}/{{ goal.slug }}" class="text-muted">
+                            {{ goal.description }}
+                        </a>
+                    </h5>
+                </div>
+            </div>
+            <h4 class="text-info"></h4>
+            <h1><small><strong class="text-info">Target:</strong></small> {{ indicator.target_description }}</h1>
+        </div>
+        <div class="lead"><strong><span class="text-success">Indicator</span> <span class="text-muted">{{ indicator.code }}</span></strong></div>
+        <div class="lead">{{ indicator.description }}</div>
+    </div>
+</div>
+
+<div class="container container-narrow">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" ng-click="activeTab='charts'">Charts</a></li>
+        <li class=""><a data-toggle="tab" ng-click="activeTab='tables'">Tables</a></li>
+        <li class=""><a data-toggle="tab" ng-click="activeTab='metadata'">Metadata</a></li>
+    </ul>
+
+    <div class="">
+        <div id="components-charts" ng-show="activeTab=='charts'">
+            <div ng-repeat="component in components.results">
+                <div class="page-header">
+                    <h4>{{ component.name }} <span class="text-info">({{ component.value_unit }})</span></h4>
+                </div>
+                <div class="container-fluid">
+                    <nvd3 ng-if="component.target_value" options="barChart" data="[
+                            {key: component.name, type: 'bar', values: component.progress, yAxis: 1},
+                            {key: 'Target', type: 'line', values: mapTarget(component.target_value, component.progress), yAxis: 1}]">
+                    </nvd3>
+                    <nvd3 ng-if="!component.target_value" options="barChart" data="[
+                            {key: component.name, type: 'bar', values: component.progress, yAxis: 1}]">
+                    </nvd3>
+                </div>
+            </div>
+        </div>
+
+        <div id="components-tables" ng-show="activeTab=='tables'">
+            <div ng-repeat="component in components.results">
+                <div class="page-header">
+                    <h4>{{ component.name }} <span class="text-info">({{ component.value_unit }})</span></h4>
+                </div>
+                <div class="container-fluid">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Value <span ng-if="component.value_unit">({{ component.value_unit }})</span></th>
+                                <th>Area</th>
+                            </tr>
+                        </thead>
+                        <tr ng-repeat="progress in component.progress">
+                            <td>{{ progress.year }}</td>
+                            <td>{{ progress.value }}</td>
+                            <td>{{ progress.value_unit }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="indicator-metadata" ng-show="activeTab=='metadata'">
+        </div>
+    </div>
+</div>
+</div>
+
+
