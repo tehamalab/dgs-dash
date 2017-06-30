@@ -20,7 +20,7 @@ angular
     'ngTouch',
     'nvd3'
   ]
-  .config ($routeProvider, $locationProvider) ->
+  .config ($routeProvider, $locationProvider, $resourceProvider) ->
     $routeProvider
       .when '/',
         templateUrl: 'views/main.html'
@@ -40,6 +40,6 @@ angular
         controllerAs: 'indicator'
       .otherwise
         redirectTo: '/'
-    # use the HTML5 History API
     $locationProvider.html5Mode true
+    $resourceProvider.defaults.stripTrailingSlashes = false
 
