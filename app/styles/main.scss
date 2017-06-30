@@ -44,6 +44,20 @@ body {
 .navbar-brand  {
     padding: 20px 20px;
 }
+.nav-goals-strip {
+    height: 10px;
+    width: 100%;
+    display:block;
+    font-size: 1em;
+    line-height: 0.8;
+}
+
+.nav-goals-strip-item {
+    width: 5.88%;
+    height: 100%;
+    display: inline-block;
+    overflow: hidden;
+}
 
 .footer {
   padding-top: 19px;
