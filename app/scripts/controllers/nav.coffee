@@ -10,7 +10,9 @@
 angular.module 'sdgsDash'
     .controller 'NavCtrl', ($scope, goal) ->
 
-        goal.query {}, (data) ->
+        $scope.plan_code = 'sdgs'
+
+        goal.query {plan_code: $scope.plan_code}, (data) ->
             $scope.goals = data
 
         return

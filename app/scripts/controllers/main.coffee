@@ -9,8 +9,10 @@
 ###
 angular.module 'sdgsDash'
     .controller 'MainCtrl', ($scope, goal) ->
+        
+        $scope.plan_code = 'sdgs'
 
-        goal.query {}, (data) ->
+        goal.query {plan_code: $scope.plan_code}, (data) ->
             $scope.goals = data
 
         return
