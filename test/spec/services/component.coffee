@@ -3,7 +3,7 @@
 describe 'Service: component', ->
 
   # load the service's module
-  beforeEach module 'sdgsDash'
+  beforeEach module 'dgsDash'
 
   # instantiate service
   component = {}

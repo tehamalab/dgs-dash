@@ -2,12 +2,12 @@
 
 ###*
  # @ngdoc function
- # @name sdgsDash.controller:MainCtrl
+ # @name dgsDash.controller:MainCtrl
  # @description
  # # MainCtrl
- # Controller of the sdgsDash
+ # Controller of the dgsDash
 ###
-angular.module 'sdgsDash'
+angular.module 'dgsDash'
     .controller 'MainCtrl', ($scope, goal) ->
         
         $scope.plan_code = 'sdgs'

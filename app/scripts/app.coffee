@@ -2,14 +2,14 @@
 
 ###*
  # @ngdoc overview
- # @name sdgsDash
+ # @name dgsDash
  # @description
- # # sdgsDash
+ # # dgsDash
  #
  # Main module of the application.
 ###
 angular
-  .module 'sdgsDash', [
+  .module 'dgsDash', [
     'ngAnimate',
     'ngAria',
     'ngCookies',

@@ -2,12 +2,12 @@
 
 ###*
  # @ngdoc function
- # @name sdgsDash.controller:GoalCtrl
+ # @name dgsDash.controller:GoalCtrl
  # @description
  # # GoalCtrl
- # Controller of the sdgsDash
+ # Controller of the dgsDash
 ###
-angular.module 'sdgsDash'
+angular.module 'dgsDash'
     .controller 'GoalCtrl', ($scope, $routeParams, $location, goal, indicator) ->
         goal.query id: $routeParams.id, (data) ->
             $scope.goal = data

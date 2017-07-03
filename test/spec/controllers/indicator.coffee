@@ -3,7 +3,7 @@
 describe 'Controller: IndicatorCtrl', ->
 
   # load the controller's module
-  beforeEach module 'sdgsDash'
+  beforeEach module 'dgsDash'
 
   IndicatorCtrl = {}
 

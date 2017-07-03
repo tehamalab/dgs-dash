@@ -2,12 +2,12 @@
 
 ###*
  # @ngdoc service
- # @name sdgsDash.settings
+ # @name dgsDash.settings
  # @description
  # # settings
- # Constant in the sdgsDash.
+ # Constant in the dgsDash.
 ###
-angular.module 'sdgsDash'
+angular.module 'dgsDash'
     .constant 'settings',
         API_ROOT_URL: 'http://sdg.datasetindex.com/api'
 

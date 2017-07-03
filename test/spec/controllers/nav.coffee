@@ -3,7 +3,7 @@
 describe 'Controller: NavCtrl', ->
 
   # load the controller's module
-  beforeEach module 'sdgsDash'
+  beforeEach module 'dgsDash'
 
   NavCtrl = {}
 

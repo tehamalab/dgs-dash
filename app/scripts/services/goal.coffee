@@ -2,13 +2,13 @@
 
 ###*
  # @ngdoc service
- # @name sdgsDash.goal
+ # @name dgsDash.goal
  # @description
  # # goal
- # Factory in the sdgsDash.
+ # Factory in the dgsDash.
 ###
 
-angular.module 'sdgsDash'
+angular.module 'dgsDash'
     .factory 'goal', ($resource, settings) ->
         $resource settings.API_ROOT_URL + "/goals/:id/", {},
             query:

@@ -3,7 +3,7 @@
 describe 'Service: indicator', ->
 
   # load the service's module
-  beforeEach module 'sdgsDash'
+  beforeEach module 'dgsDash'
 
   # instantiate service
   indicator = {}

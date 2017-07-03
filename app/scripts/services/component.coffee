@@ -2,12 +2,12 @@
 
 ###*
  # @ngdoc service
- # @name sdgsDash.component
+ # @name dgsDash.component
  # @description
  # # component
- # Factory in the sdgsDash.
+ # Factory in the dgsDash.
 ###
-angular.module 'sdgsDash'
+angular.module 'dgsDash'
     .factory 'component', ($resource, settings) ->
         $resource settings.API_ROOT_URL + "/components/:id/", {},
             query:

@@ -3,7 +3,7 @@
 describe 'Controller: GoalCtrl', ->
 
   # load the controller's module
-  beforeEach module 'sdgsDash'
+  beforeEach module 'dgsDash'
 
   GoalCtrl = {}
 

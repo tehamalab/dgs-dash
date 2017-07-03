@@ -2,12 +2,12 @@
 
 ###*
  # @ngdoc function
- # @name sdgsDash.controller:IndicatorCtrl
+ # @name dgsDash.controller:IndicatorCtrl
  # @description
  # # IndicatorCtrl
- # Controller of the sdgsDash
+ # Controller of the dgsDash
 ###
-angular.module 'sdgsDash'
+angular.module 'dgsDash'
     .controller 'IndicatorCtrl', ($scope, $routeParams, $location, indicator, goal, component) ->
 
         $scope.activeTab = 'charts'

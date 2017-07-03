@@ -2,12 +2,12 @@
 
 ###*
  # @ngdoc function
- # @name sdgsDash.controller:AboutCtrl
+ # @name dgsDash.controller:AboutCtrl
  # @description
  # # AboutCtrl
- # Controller of the sdgsDash
+ # Controller of the dgsDash
 ###
-angular.module 'sdgsDash'
+angular.module 'dgsDash'
   .controller 'AboutCtrl', ->
     @awesomeThings = [
       'HTML5 Boilerplate'
