@@ -1,0 +1,61 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: dgs-dash\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Tehamalab <developers@tehamalab.com>\n"
+"Language: sw\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+
+#: app/index.html:61
+msgid "About"
+msgstr ""
+
+#: app/views/goal.html:7
+msgid "Goal No: {{ goal.code }}"
+msgstr ""
+
+#: app/index.html:51
+msgid "Goals"
+msgstr ""
+
+#: app/index.html:49
+msgid "Home"
+msgstr ""
+
+#: app/views/goal.html:45
+msgid "Indicator"
+msgstr ""
+
+#: app/views/goal.html:57
+msgid "Some of statistics available"
+msgstr ""
+
+#: app/views/goal.html:59
+msgid "Statistics availability: Unkonwn"
+msgstr ""
+
+#: app/views/goal.html:56
+msgid "Statistics available"
+msgstr ""
+
+#: app/views/goal.html:58
+msgid "Statistics not available"
+msgstr ""
+
+#: app/views/goal.html:30
+msgid "Target"
+msgstr ""
+
+#: app/views/goal.html:17
+msgid "Targets"
+msgstr ""
+
+#: app/index.html:38
+msgid "Toggle navigation"
+msgstr ""

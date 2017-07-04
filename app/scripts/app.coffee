@@ -18,6 +18,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'gettext',
     'nvd3'
   ]
   .config ($routeProvider, $locationProvider, $resourceProvider) ->

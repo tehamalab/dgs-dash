@@ -28,6 +28,8 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+  grunt.loadNpmTasks('grunt-angular-gettext');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -471,6 +473,25 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.coffee',
         singleRun: true
       }
+    },
+
+    nggettext_extract: {
+        pot:{
+            files:{
+                '<%= yeoman.app %>/locale/messages.pot': [
+                    '<%= yeoman.app %>/index.html',
+                    '<%= yeoman.app %>/views/*.html'
+                ]
+            }
+        }
+    },
+
+    nggettext_compile: {
+        all:{
+            files:{
+                '.tmp/scripts/translations.js': ['<%= yeoman.app %>/locale/*.po']
+            }
+        }
     }
   });
 
@@ -482,6 +503,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'nggettext_compile',
       'wiredep',
       'concurrent:server',
       'postcss:server',
@@ -507,6 +529,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
+    'nggettext_compile',
     'useminPrepare',
     'concurrent:dist',
     'postcss',
@@ -527,4 +550,5 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
 };

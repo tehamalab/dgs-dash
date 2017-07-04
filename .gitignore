@@ -11,3 +11,6 @@
 *.swp
 *.swo
 .ropeproject
+
+# translations
+*.pot
