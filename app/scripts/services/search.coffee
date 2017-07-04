@@ -2,17 +2,17 @@
 
 ###*
  # @ngdoc service
- # @name dgsDash.goal
+ # @name dgsDash.search
  # @description
- # # goal
+ # # search
  # Factory in the dgsDash.
 ###
 
 angular.module 'dgsDash'
-    .factory 'goal', ($resource, settings, lookup) ->
-
-        $resource settings.API_ROOT_URL + "/goals/:id/", {},
+    .factory 'search', ($resource, settings) ->
+        $resource settings.API_ROOT_URL + "/search/", {},
             query:
                 method: "GET"
                 isArray: false
                 cache: true
+

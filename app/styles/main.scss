@@ -44,6 +44,7 @@ body {
 .navbar-brand  {
     padding: 20px 20px;
 }
+
 .nav-goals-strip {
     height: 10px;
     width: 100%;
@@ -107,6 +108,18 @@ body {
     padding-bottom: 5px;
 }
 
+.listing .result-header{
+    padding-bottom: 5px;
+}
+
+.result-header .result-object-type{
+    margin-top: ($line-height-computed / 2);
+    font-size: 70%;
+}
+
+.search-facets{
+    margin-top: 20px;
+}
 @media screen and (min-width: 768px) {
 
     .container.container-narrow{
@@ -132,5 +145,11 @@ body {
 @media screen and (max-width: 766px) {
     .sdg-img{
         width: 100%;
+    }
+}
+
+@media (min-width: 1024px){
+    #site-search {
+        width: 420px;
     }
 }

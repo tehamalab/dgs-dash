@@ -45,20 +45,20 @@
             </div>
 
             <div class="collapse navbar-collapse" id="js-navbar-collapse">
+                <form class="navbar-form navbar-left" ng-submit="search()">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="site-search"
+                                placeholder="{{ 'Search'|translate }}"
+                                ng-model="lookup.search.q" ng-model-options="{debounce: 1000}">
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+
                 <ul class="nav navbar-nav">
-                    <li><a href="/"><i class="fa fa-home text-info"></i> <translate>Home</translate></a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" ><i class="fa fa-dot-circle-o text-info"></i> <translate>Goals</translate> <span class="caret"></span></a>
-                        <ul class="dropdown-menu" style="overflow-y: auto; max-height: 400px">
-                            <li ng-repeat="goal in goals.results">
-                                <a ng-href="/#!/goals/{{ goal.id }}/{{ goal.slug }}">
-                                    <img ng-src="{{ goal.image_small }}" style="max-height: 30px">
-                                    {{ goal.name }}
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a ng-href="/#!/about"><i class="fa fa-info text-info"></i> <translate>About</translate></a></li>
+                    <li><a ng-href="/#!/about" translate>Data</a></li>
+                    <li><a ng-href="/#!/about">About</a></li>
                 </ul>
             </div>
 
@@ -118,6 +118,9 @@
         <script src="scripts/controllers/indicator.js"></script>
         <script src="scripts/services/component.js"></script>
         <script src="scripts/controllers/nav.js"></script>
+        <script src="scripts/services/search.js"></script>
+        <script src="scripts/services/lookup.js"></script>
+        <script src="scripts/controllers/search.js"></script>
         <!-- endbuild -->
 </body>
 </html>

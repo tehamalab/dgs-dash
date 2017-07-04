@@ -35,10 +35,14 @@ angular
         templateUrl: 'views/goal.html'
         controller: 'GoalCtrl'
         controllerAs: 'goal'
-      .when '/indicators/:id',
+      .when '/indicators/:id/:slug',
         templateUrl: 'views/indicator.html'
         controller: 'IndicatorCtrl'
         controllerAs: 'indicator'
+      .when '/search',
+        templateUrl: 'views/search.html'
+        controller: 'SearchCtrl'
+        controllerAs: 'search'
       .otherwise
         redirectTo: '/'
     $locationProvider.html5Mode true

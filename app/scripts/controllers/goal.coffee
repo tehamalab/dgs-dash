@@ -8,7 +8,8 @@
  # Controller of the dgsDash
 ###
 angular.module 'dgsDash'
-    .controller 'GoalCtrl', ($scope, $routeParams, $location, goal, indicator) ->
+    .controller 'GoalCtrl', ($scope, $routeParams, $location, lookup, goal, indicator) ->
+        lookup.refresh()
         goal.query id: $routeParams.id, (data) ->
             $scope.goal = data
 

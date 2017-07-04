@@ -1,0 +1,86 @@
+
+<div class="search-facets">
+    <span class="btn btn-primary">
+        <span class="badge" ng->
+            <i class="fa fa-spinner fa-spin" ng-if='loading'></i>
+            {{ data.count }}
+        </span>
+        <translate>results</translate>
+    </span>
+
+    <a class="btn btn-default" ng-if="facets.object_type.goal" ng-click="update({'object_type': 'goal'})">
+        <span class="badge">{{ facets.object_type.goal }}</span>
+        <translate>goals</translate>
+    </a>
+
+    <span class="btn btn-default" ng-if="facets.object_type.target" ng-click="update({'object_type': 'target'})">
+        <span class="badge">{{ facets.object_type.target }}</span>
+        <translate>targets</translate>
+    </span>
+
+    <span class="btn btn-default" ng-if="facets.object_type.indicator" ng-click="update({'object_type': 'indicator'})">
+        <span class="badge">{{ facets.object_type.indicator }}</span>
+        <translate>indicators</translate>
+    </span>
+
+    <span class="btn btn-default" ng-if="facets.object_type.component" ng-click="update({'object_type': 'component'})">
+        <span class="badge">{{ facets.object_type.component }}</span>
+        <translate>components</translate>
+    </span>
+
+    <a class="btn btn-link" ng-if="!loading" ng-click="refresh({'q': lookup.search.q})">
+        <span class="text-muted">
+            <i class="fa fa-refresh"></i>
+            <translate ng-if="lookup.search.object_type">all results</translate>
+            <translate ng-if="!lookup.search.object_type">refresh</translate>
+        </span>
+    </a>
+</div>
+
+
+<div class="listing">
+    <div ng-repeat="result in data.results" class="well" ng-click="goto_object(result.object_type, [result.id, result.slug])">
+        <div class="row">
+            <div class="col-sm-2"><img class="img-responsive" ng-src="{{ result.image_medium }}"></div>
+            <div class="col-sm-10">
+                <div class="row result-header">
+                    <div class="col-xs-1 text-center">
+                        <div class="result-object-type">
+                            <span class="text-success hidden-xs text-uppercase"><strong translate>{{ result.object_type }}</span></small>
+                        </div>
+                    </div>
+                    <div class="col-xs-11">
+                        <h4 class="">
+                            <a ng-href="/#!{{ object_url(result.object_type, [result.id, result.slug]) }}" class="text-primary">{{ result.name }}</a>
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1 text-center hidden-xs">
+                        <div class="text-info lead">
+                            {{ result.code }}
+                        </div>
+                    </div>
+                    <div class="col-xs-11">
+                        <div class="small text-success visible-xs">
+                            {{ result.object_type }}: {{result.code}} 
+                        </div>
+                        <div class="lead">
+                            {{ result.description }}
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div ng-switch="indicator.stats_available" class="pull-right">
+                      <div ng-switch-when="YES" class="label label-success"><i class="fa fa-line-chart"></i> <translate>Statistics available</translate></div>
+                      <div ng-switch-when="PARTIALLY" class="label label-warning"><i class="fa fa-line-chart"></i> <translate>Some of statistics available</translate></div>
+                      <div ng-switch-when="NO" class="label label-danger"><i class="fa fa-line-chart"></i> <translate>Statistics not available</translate></div>
+                      <div ng-switch-when="UNKNOWN" class="label label-default"><i class="fa fa-line-chart"></i> <translate>Statistics availability: Unkonwn</translate></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

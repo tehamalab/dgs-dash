@@ -8,10 +8,11 @@
  # Controller of the dgsDash
 ###
 angular.module 'dgsDash'
-    .controller 'IndicatorCtrl', ($scope, $routeParams, $location, indicator, goal, component) ->
+    .controller 'IndicatorCtrl', ($scope, $routeParams, $location, lookup, indicator, goal, component) ->
 
         $scope.activeTab = 'charts'
 
+        lookup.refresh()
         indicator.query id: $routeParams.id, (data) ->
             $scope.indicator = data
             if $scope.indicator

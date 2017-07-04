@@ -8,11 +8,15 @@
  # Controller of the dgsDash
 ###
 angular.module 'dgsDash'
-    .controller 'NavCtrl', ($scope, goal) ->
-
+    .controller 'NavCtrl', ($scope, $location, goal, lookup) ->
+        lookup.search = {}
+        $scope.lookup = lookup
         $scope.plan_code = 'sdgs'
 
         goal.query {plan_code: $scope.plan_code}, (data) ->
             $scope.goals = data
+
+        $scope.search = ->
+            $location.url('/search')
 
         return
