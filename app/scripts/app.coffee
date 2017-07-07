@@ -43,6 +43,10 @@ angular
         templateUrl: 'views/search.html'
         controller: 'SearchCtrl'
         controllerAs: 'search'
+      .when '/data',
+        templateUrl: 'views/data.html'
+        controller: 'DataCtrl'
+        controllerAs: 'data'
       .otherwise
         redirectTo: '/'
     $locationProvider.html5Mode true
