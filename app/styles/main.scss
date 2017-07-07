@@ -10,6 +10,8 @@ $font-family-serif:       Georgia, "Times New Roman", Times, serif;
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
 $font-family-base:        $font-family-sans-serif;
 
+$text-color:              #333;
+
 $navbar-height:            80px;
 
 $navbar-default-bg:        #fff;
@@ -130,7 +132,7 @@ body {
     display: block;
     min-height: 150px;
     padding-bottom: 20px;
-    padding-top: 10px;
+    padding-top: 20px;
     color: #FFF;
 }
 
@@ -158,6 +160,28 @@ body {
 }
 
 .panel-widget{
+}
+.box-md-wrapper{
+    margin: 10px;
+}
+
+.box-md{
+    height: 250px;
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.box-md-header{
+    max-height: 60%;
+    display: block;
+}
+
+.text-default,
+.text-default:hover,
+.text-default:focus {
+    color: $text-color;
+    text-decoration: none;
 }
 
 @media screen and (min-width: 768px) {
