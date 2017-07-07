@@ -1,11 +1,11 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 
-$web-font-path: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700";
+$web-font-path: "https://fonts.googleapis.com/css?family=Pontano+Sans";
 @import url($web-font-path);
 
 $state-info-text:              #1A92B7;
 
-$font-family-sans-serif:  "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-sans-serif:  'Pontano Sans', sans-serif;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif;
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
 $font-family-base:        $font-family-sans-serif;
@@ -15,10 +15,15 @@ $navbar-height:            80px;
 $navbar-default-bg:        #fff;
 $navbar-default-border:    darken($navbar-default-bg, 6.5%);
 
-$nav-link-padding: 10px 20px;
+$nav-link-padding:         10px 20px;
 
-$well-bg:                     #FAFAFA;
-$well-border:                 darken($well-bg, 6.5%);
+$well-bg:                  #FAFAFA;
+$well-border:              darken($well-bg, 6.5%);
+
+$container-wrapper-bg:     #F7F8FA;
+
+$panel-bg:                 #FFFFFF;
+$panel-footer-bg:          darken($panel-bg, 2.5%);
 
 
 // bower:scss
@@ -120,6 +125,41 @@ body {
 .search-facets{
     margin-top: 20px;
 }
+
+.page-header-dg {
+    display: block;
+    min-height: 150px;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    color: #FFF;
+}
+
+.page-header-dg .subtitle {
+    color: rgba(0, 0, 0, 0.5);
+}
+.page-header-img{}
+
+.page-info{
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.img-sm{
+    max-height: 70px;
+}
+
+.page-info .img-sm{
+    margin: 5px;
+}
+
+.container-wrapper{
+    background: $container-wrapper-bg;
+    padding-top: 20px;
+}
+
+.panel-widget{
+}
+
 @media screen and (min-width: 768px) {
 
     .container.container-narrow{

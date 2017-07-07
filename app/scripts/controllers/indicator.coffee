@@ -8,19 +8,40 @@
  # Controller of the dgsDash
 ###
 angular.module 'dgsDash'
-    .controller 'IndicatorCtrl', ($scope, $routeParams, $location, lookup, indicator, goal, component) ->
+    .controller 'IndicatorCtrl', ($scope, $routeParams, $location, lookup, indicator, target, goal, component, progress) ->
 
         $scope.activeTab = 'charts'
-
         lookup.refresh()
-        indicator.query id: $routeParams.id, (data) ->
-            $scope.indicator = data
-            if $scope.indicator
-                goal.query id: $scope.indicator.goal, (data) ->
-                    $scope.goal = data
 
-        component.query indicator: $routeParams.id, (data) ->
+        indicator.query id: $routeParams.id, (indicator) ->
+            $scope.indicator = indicator
+            target.query id: $scope.indicator.target, (target) ->
+                $scope.target = target
+            goal.query id: $scope.indicator.goal_id, (goal) ->
+                $scope.goal = goal
+                $scope.barChart.chart.color.unshift $scope.goal.extras.color_primary
+
+        component.query indicators: $routeParams.id, (data) ->
             $scope.components = data
+            progress.query indicator: $routeParams.id, (progress) ->
+                $scope.progress = progress
+                for component in $scope.components.results
+                    component.progress = _.where $scope.progress.results, component: component.id
+                    if component.progress.length
+                        component.chart = [
+                            {
+                                key: component.name
+                                type: 'line'
+                                values: component.progress
+                                yAxis: 1
+                             }]
+                        if component.target_value
+                            targetChart =
+                                key: 'Target'
+                                type: 'line'
+                                values: $scope.mapTarget component.target_value, component.progress
+                                yAxis: 1
+                            component.chart.push targetChart
 
         $scope.barChart =
             chart:
