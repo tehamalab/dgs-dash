@@ -1,12 +1,13 @@
 <div class="page-header-dg" style="background: {{ goal.extras.color_primary }}">
     <div class="container">
         <div class="row">
-            <div class="col-md-2">
-                <img class="sdg-img" ng-src="{{ goal.image_medium }}">
+            <div class="col-md-2 text-center">
+                <h3 class="text-uppercase" translate>Target</h3>
+                <h1>{{ target.code }}</h1>
             </div>
             <div class="col-md-8">
-                <h4><a class="subtitle" ng-href="/">{{ goal.plan_name }}</a></h4>
-                <h1>{{ goal.description }}</h1>
+                <h4><a class="subtitle" ng-href="/">{{ target.plan_name }}</a></h4>
+                <h1>{{ target.description }}</h1>
             </div>
         </div>
     </div>
@@ -20,34 +21,17 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="box-md-wrapper panel panel-default">
-                        <div class="panel-body">
-                            <div class="">
-                                <h2 class="text-center text-uppercase" translate>Targets</h2>
+                        <a class="text-default" ng-href="/goals/{{ goal.id }}/{{ goal.slug }}">
+                            <div class="page-header">
+                                <h3 class="text-center text-uppercase" translate>Goal</h3>
                             </div>
-
                             <div class="panel-body">
-                                <div class="timeline">
-                                    <div class="line text-muted"></div>
-                                    <div class="separator" ng-repeat-start="target in targets.results">
-                                        <h2>
-                                            <a style="color:{{ goal.extras.color_primary }}"
-                                                    ng-href="/targets/{{ target.id }}/{{ target.slug }}">
-                                                {{ target.code }}
-                                            </a>
-                                        </h2>
-                                    </div>
-                                    <div class="panel panel-default panel-outline">
-                                        <div class="panel-heading icon" >
-                                            <a ng-href="/targets/{{ target.id }}/{{ target.slug }}" style="color: {{ goal.extras.color_primary }}"><i class="fa fa-dot-circle-o"></i></a>
-                                        </div>
-                                        <div class="panel-body">
-                                            <a class="text-default" ng-href="/targets/{{ target.id }}/{{ target.slug }}">{{ target.name }}</a>
-                                        </div>
-                                    </div>
-                                    <span ng-repeat-end></span>
+                                <div class="panel-body">
+                                    <div>{{ goal.description }}</div>
                                 </div>
                             </div>
-                        </div>
+                            <img class="sdg-img" ng-src="{{ goal.image_medium }}">
+                        </a>
                     </div>
                 </div>
 
