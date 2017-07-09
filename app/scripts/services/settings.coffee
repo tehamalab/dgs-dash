@@ -10,4 +10,5 @@
 angular.module 'dgsDash'
     .constant 'settings',
         API_ROOT_URL: 'http://sdg.datasetindex.com/api'
+        SITE_NAME: 'Development Goals'
 

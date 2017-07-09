@@ -8,10 +8,6 @@
  # Controller of the dgsDash
 ###
 angular.module 'dgsDash'
-  .controller 'DataCtrl', ->
-    @awesomeThings = [
-      'HTML5 Boilerplate'
-      'AngularJS'
-      'Karma'
-    ]
-    return
+    .controller 'DataCtrl', ($rootScope) ->
+        $rootScope.title = "#{$rootScope.settings.SITE_NAME} • Data"
+

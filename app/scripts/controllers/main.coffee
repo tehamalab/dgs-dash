@@ -8,11 +8,12 @@
  # Controller of the dgsDash
 ###
 angular.module 'dgsDash'
-    .controller 'MainCtrl', ($scope, goal) ->
+    .controller 'MainCtrl', ($scope, $rootScope, goal) ->
         
         $scope.plan_code = 'sdgs'
 
         goal.query {plan_code: $scope.plan_code}, (data) ->
             $scope.goals = data
+            $rootScope.title = "#{$rootScope.settings.SITE_NAME}"
 
         return

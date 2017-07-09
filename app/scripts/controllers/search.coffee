@@ -9,13 +9,14 @@
 ###
 
 angular.module 'dgsDash'
-    .controller 'SearchCtrl', ($scope, $routeParams, $location, search, lookup) ->
+    .controller 'SearchCtrl', ($scope, $routeParams, $location, $rootScope, search, lookup) ->
 
         init = ->
             $scope.lookup = lookup
             $scope.data = {}
             $scope.facets = {}
             $scope.loading = false
+            $rootScope.title = "#{$rootScope.settings.SITE_NAME} • Search"
             $scope.object_urls =
                 goal: 'goals'
                 indicator: 'indicators'
