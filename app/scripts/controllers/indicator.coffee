@@ -46,8 +46,7 @@ angular.module 'dgsDash'
                 $scope.target = target
             goal.query id: $scope.indicator.goal_id, (goal) ->
                 $scope.goal = goal
-                _chart.chart.color = d3.scale.category20().range()
-                _chart.chart.color.unshift $scope.goal.extras.color_primary
+                _chart.chart.color[0] = $scope.goal.extras.color_primary
 
         component.query indicators: $routeParams.id, (data) ->
             $scope.components = data
