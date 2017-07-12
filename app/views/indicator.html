@@ -55,7 +55,7 @@
                         <div ng-if="chart.hasOneValue" class="text-center chart-single-value jumbotron">
                             <div><strong class="text-muted">{{ chart.data[0].values[0].area_name }}</strong></div>
                             <h1 style="color: {{ goal.extras.color_primary }}">
-                                {{ chart.data[0].values[0].value }}
+                                {{ chart.data[0].values[0].value|number }}
                             </h1>
                             <h3 ng-if="component.value_unit" class="subtitle">{{ component.value_unit }}</h3>
                         </div>
@@ -86,7 +86,7 @@
                                         <tr ng-repeat="p in progress">
                                             <td>{{ p.area_name }}</td>
                                             <td>{{ p.year }}</td>
-                                            <td class="text-right">{{ p.value }}</td>
+                                            <td class="text-right">{{ p.value|number }}</td>
                                             <td>{{ p.groups.join(', ') }}</td>
                                         </tr>
                                     </tbody>
