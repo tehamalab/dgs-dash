@@ -19,4 +19,8 @@ angular.module 'dgsDash'
         $scope.search = ->
             $location.url('/search')
 
+        $scope.$watch 'lookup.search.q', (newValue, oldValue) ->
+            if !$location.path().startsWith('/search') and newValue
+                $scope.search()
+
         return

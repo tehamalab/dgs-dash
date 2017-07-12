@@ -8,8 +8,9 @@
  # Controller of the dgsDash
 ###
 angular.module 'dgsDash'
-    .controller 'MainCtrl', ($scope, $rootScope, goal) ->
+    .controller 'MainCtrl', ($scope, $rootScope, lookup, goal) ->
         
+        lookup.refresh()
         $scope.plan_code = 'sdgs'
 
         goal.query {plan_code: $scope.plan_code}, (data) ->
