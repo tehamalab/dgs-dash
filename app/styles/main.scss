@@ -27,6 +27,8 @@ $container-wrapper-bg:     #F7F8FA;
 $panel-bg:                 #FFFFFF;
 $panel-footer-bg:          darken($panel-bg, 2.5%);
 
+$jumbotron-bg:             #FAFBFD;
+
 
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
@@ -186,6 +188,36 @@ a:focus {
 .text-default:focus {
     color: $text-color;
     text-decoration: none;
+}
+
+.table-scrollable tbody {
+    display: block;
+    overflow: auto
+}
+
+.table-scrollable thead,
+.table-scrollable tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+
+.table-scrollable thead {
+    width: calc( 100% - 1em );
+}
+
+.chart-single-value .subtitle{
+    font-weight: 700;
+    opacity: 0.7;
+}
+
+.chart-single-value h1{
+    font-weight: 700;
+    opacity: 0.8;
+}
+
+.table-progress tbody{
+    max-height: 400px;
 }
 
 @media screen and (min-width: 768px) {
