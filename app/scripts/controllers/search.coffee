@@ -56,8 +56,9 @@ angular.module 'dgsDash'
                 $location.url path
 
         $scope.$watch 'lookup.search.q', (newValue, oldValue) ->
-            query()
-            $location.search(lookup.search)
+            if newValue.length > 3 or newValue.length is 0
+                query()
+                $location.search(lookup.search)
         , true
 
         init()

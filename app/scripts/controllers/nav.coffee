@@ -20,7 +20,7 @@ angular.module 'dgsDash'
             $location.url('/search')
 
         $scope.$watch 'lookup.search.q', (newValue, oldValue) ->
-            if !$location.path().startsWith('/search') and newValue
+            if !$location.path().startsWith('/search') and newValue.length > 3
                 $scope.search()
 
         return
