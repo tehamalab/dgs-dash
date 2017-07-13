@@ -62,4 +62,5 @@ angular.module 'dgsDash'
         , true
 
         init()
+        query()
         return
