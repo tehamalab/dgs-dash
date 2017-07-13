@@ -93,13 +93,23 @@ angular.module 'dgsDash'
                         cdata.key = group.join(', ')
                     if a.toLowerCase() is 'region'
                         chart.title = "#{component.name} by region"
+                        if _areas.length is 1
+                            chart.title = "#{component.name} in #{_areas[0]}"
+                        chart.options.chart.x = (d) -> d.area_name
+                        chart.options.chart.xAxis =
+                            axisLabel: 'Region'
+                            rotateLabels: 30
                         if _years.length is 1
-                            chart.title = "#{component.name} by region year #{_years[0]}"
-                            cdata.type = 'bar' 
-                            chart.options.chart.x = (d) -> d.area_name
-                            chart.options.chart.xAxis =
-                                axisLabel: 'Region'
-                                rotateLabels: 30
+                            chart.title = "#{chart.title} year #{_years[0]}"
+                            cdata.type = 'bar'
+                            chart.data.push cdata
+                        else
+                            for year in _years
+                                ydata = angular.copy(cdata)
+                                ydata.key = year
+                                ydata.type = 'bar'
+                                ydata.values = _.where p, year: year
+                                chart.data.push ydata
                     else if _years.length is 1 and _areas.length > 1
                         chart.title = "#{component.name} by #{a} year #{_years[0]}"
                         cdata.type = 'bar' 
@@ -107,6 +117,7 @@ angular.module 'dgsDash'
                         chart.options.chart.xAxis =
                             axisLabel: a
                             rotateLabels: 30
+                        chart.data.push cdata
                     else if _years.length is 1
                         chart.title = "#{component.name} year #{_years[0]}"
                         cdata.type = 'bar'
@@ -114,9 +125,12 @@ angular.module 'dgsDash'
                             axisLabel: ''
                             rotateLabels: 0
                             tickFormat: (d) -> ''
+                        chart.data.push cdata
                     else if a.toLowerCase() is 'sub-country'
                         chart.title = "#{ _areas.join(', ')} - #{component.name}"
-                    chart.data.push cdata
+                        chart.data.push cdata
+                    else
+                        chart.data.push cdata
                 if chart.data.length is 1 and chart.data[0].values.length is 1
                     chart.hasOneValue = true 
                 if component.target_value
