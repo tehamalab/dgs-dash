@@ -92,6 +92,13 @@ a:focus {
   }
 }
 
+.jumbotron.jumbotron-no-pad {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
 .well{
     box-shadow: none;
 }
@@ -139,7 +146,12 @@ a:focus {
     min-height: 150px;
     padding-bottom: 20px;
     padding-top: 20px;
-    color: #FFF;
+}
+
+.page-header-dg {
+    &.themed {
+        color: #FFF;
+    }
 }
 
 .page-header-dg .subtitle {

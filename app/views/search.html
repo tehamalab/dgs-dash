@@ -39,58 +39,51 @@
             </a>
         </div>
 
-        <div class="listing">
-            <div ng-repeat="result in data.results" class="panel panel-default" ng-click="goto_object(result.object_type, [result.id, result.slug])">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-sm-2"><img class="img-responsive" ng-src="{{ result.image_medium }}"></div>
-                        <div class="col-sm-10">
-                            <div class="row result-header">
-                                <div class="col-xs-1 text-center">
-                                    <div class="result-object-type">
-                                        <span class="text-success hidden-xs text-uppercase"><strong translate>{{ result.object_type }}</span></small>
-                                        <h3 class="text-info">
-                                            {{ result.code }}
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="col-xs-11">
-                                    <div class="page-header">
-                                        <h4 class="">
-                                            <a ng-href="/#!{{ object_url(result.object_type, [result.id, result.slug]) }}" class="text-primary">
-                                                {{ result.name }}
-                                            </a>
-                                        </h4>
-                                    </div>
-                                </div>
-                            </div>
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="listing">
+                    <div ng-repeat="result in data.results" class="panel panel-default" ng-click="goto_object(result.object_type, [result.id, result.slug])">
+                        <div class="panel-body">
                             <div class="row">
-                                <div class="col-xs-1 text-center hidden-xs">
+                                <div ng-if="result.image_medium" class="col-sm-3 text-center">
+                                    <img  class="img-responsive" ng-src="{{ result.image_medium }}">
                                 </div>
-                                <div class="col-xs-11">
-                                    <div class="small text-success visible-xs">
-                                        {{ result.object_type }}: {{result.code}}
-                                    </div>
-                                    <div class="lead">
-                                        {{ result.description }}
+                                <div ng-if="!result.image_medium" class="col-sm-3 text-center">
+                                    <div class="jumbotron jumbotron-no-pad">
+                                        <h3 class="text-uppercase text-muted" translate>{{ result.object_type }}</h3>
+                                        <h1>{{ result.code }}</h1>
                                     </div>
                                 </div>
-                            </div>
-                            <div>
-                                <div ng-switch="indicator.stats_available" class="pull-right">
-                                  <div ng-switch-when="YES" class="label label-success"><i class="fa fa-line-chart"></i> <translate>Statistics available</translate></div>
-                                  <div ng-switch-when="PARTIALLY" class="label label-warning"><i class="fa fa-line-chart"></i> <translate>Some of statistics available</translate></div>
-                                  <div ng-switch-when="NO" class="label label-danger"><i class="fa fa-line-chart"></i> <translate>Statistics not available</translate></div>
-                                  <div ng-switch-when="UNKNOWN" class="label label-default"><i class="fa fa-line-chart"></i> <translate>Statistics availability: Unkonwn</translate></div>
+                                <div class="col-sm-9">
+                                    <div class="result-header">
+                                            <div class="page-header">
+                                                <h3>
+                                                    <a ng-href="{{ object_url(result.object_type, [result.id, result.slug]) }}" class="text-default">
+                                                        <strong>{{ result.name }}</strong>
+                                                    </a>
+                                                </h3>
+                                            </div>
+                                            <div>
+                                                {{ result.description }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div ng-switch="indicator.stats_available" class="pull-right">
+                                          <div ng-switch-when="YES" class="label label-success"><i class="fa fa-line-chart"></i> <translate>Statistics available</translate></div>
+                                          <div ng-switch-when="PARTIALLY" class="label label-warning"><i class="fa fa-line-chart"></i> <translate>Some of statistics available</translate></div>
+                                          <div ng-switch-when="NO" class="label label-danger"><i class="fa fa-line-chart"></i> <translate>Statistics not available</translate></div>
+                                          <div ng-switch-when="UNKNOWN" class="label label-default"><i class="fa fa-line-chart"></i> <translate>Statistics availability: Unkonwn</translate></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
-
         </div>
-
 
     </div>
 </div>

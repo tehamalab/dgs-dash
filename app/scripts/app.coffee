@@ -43,6 +43,10 @@ angular
         templateUrl: 'views/indicator.html'
         controller: 'IndicatorCtrl'
         controllerAs: 'indicator'
+      .when '/components/:id/:slug',
+        templateUrl: 'views/component.html'
+        controller: 'ComponentCtrl'
+        controllerAs: 'component'
       .when '/data',
         templateUrl: 'views/data.html'
         controller: 'DataCtrl'
