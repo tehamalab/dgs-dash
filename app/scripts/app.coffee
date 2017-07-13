@@ -19,7 +19,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'gettext',
-    'nvd3'
+    'nvd3',
+    'infinite-scroll'
   ]
   .config ($routeProvider, $locationProvider, $resourceProvider) ->
     $routeProvider

@@ -16,6 +16,7 @@ angular.module 'dgsDash'
             $scope.data = {}
             $scope.facets = {}
             $scope.loading = false
+            $scope.loadingMore = false
             $rootScope.title = "#{$rootScope.settings.SITE_NAME} • Search"
             $scope.object_urls =
                 goal: 'goals'
@@ -32,18 +33,36 @@ angular.module 'dgsDash'
             $scope.loading = true
             search.query lookup.search, (data) ->
                 $scope.loading = false
-                $scope.data = data
-                $scope.facets.object_type = _.object($scope.data.facets.fields.object_type)
+                if isLoadingMore()
+                    $scope.data.results.push.apply($scope.data.results, data.results)
+                    $scope.data.next = data.next
+                    $scope.data.previous = data.previous
+                    $scope.loadingMore = false
+                else
+                    $scope.data = data
+                    $scope.facets.object_type = _.object($scope.data.facets.fields.object_type)
 
-        $scope.update = (params) ->
+        $scope.update = (params, append) ->
             if params?
                 _.extendOwn lookup.search, params
-            query()
-            $location.search(lookup.search)
+            if not append
+                delete lookup.search.page
+                $location.search lookup.search
+                $scope.loadingMore = false
 
         $scope.refresh = (params) ->
             lookup.search = {}
             $scope.update(params)
+
+        $scope.loadMore = () ->
+            if $scope.data? and $scope.data.next? and not $scope.loading
+                if lookup.search.page?
+                    lookup.search.page += 1
+                else
+                    lookup.search.page = 2
+                $scope.loadingMore = true
+                $scope.update({}, true)
+                query()
 
         $scope.object_url = (_type, args) ->
             if _.has($scope.object_urls, _type) 
@@ -51,11 +70,13 @@ angular.module 'dgsDash'
             else
                 return ''
 
-
         $scope.goto_object = (_type, args) ->
             path = $scope.object_url(_type, args)
             if path 
                 $location.url path
+
+        isLoadingMore = () ->
+            return $scope.data? and $scope.data.results? and lookup.search.page? and lookup.search.page > 1
 
         $scope.$watch 'lookup.search.q', (newValue, oldValue) ->
             if newValue
