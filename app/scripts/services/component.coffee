@@ -86,6 +86,7 @@ angular.module 'dgsDash'
                 for group in _groups
                     cdata = angular.copy(_cdata)
                     cdata.values = _.filter p, (i) -> _.isEqual(_.sortBy(group), _.sortBy(i.groups))
+                    cdata.values = _.sortBy cdata.values, 'year'
                     if _groups.length > 1
                         cdata.key = group.join(', ')
                     if a.toLowerCase() is 'region'
@@ -96,6 +97,7 @@ angular.module 'dgsDash'
                         chart.options.chart.xAxis =
                             axisLabel: 'Region'
                             rotateLabels: 30
+                        cdata.values = _.sortBy cdata.values, 'area_name'
                         if _years.length is 1
                             chart.title = "#{chart.title} year #{_years[0]}"
                             cdata.type = 'bar'
@@ -106,6 +108,7 @@ angular.module 'dgsDash'
                                 ydata.key = year
                                 ydata.type = 'bar'
                                 ydata.values = _.where p, year: year
+                                ydata.values = _.sortBy ydata.values, 'area_name'
                                 chart.data.push ydata
                     else if _years.length is 1 and _areas.length > 1
                         chart.title = "#{component.name} by #{a} year #{_years[0]}"
