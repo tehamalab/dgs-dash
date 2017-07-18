@@ -201,6 +201,9 @@ a:focus {
     color: $text-color;
     text-decoration: none;
 }
+.btn.btn-spaced {
+    margin: 5px;
+}
 
 .table-scrollable tbody {
     display: block;
@@ -231,7 +234,13 @@ a:focus {
 .table-progress tbody{
     max-height: 400px;
 }
-
+.map-polygon-tooltip{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    box-shadow: none;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+}
 @media screen and (min-width: 768px) {
 
     .container.container-narrow{

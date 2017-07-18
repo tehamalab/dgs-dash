@@ -10,8 +10,9 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css(.) styles/vendor.css -->
         <!-- bower:css -->
-        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
         <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css" />
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css(.tmp) styles/main.css -->
@@ -119,11 +120,15 @@
         <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
         <script src="bower_components/angular-touch/angular-touch.js"></script>
         <script src="bower_components/angular-gettext/dist/angular-gettext.js"></script>
-        <script src="bower_components/underscore/underscore.js"></script>
         <script src="bower_components/d3/d3.js"></script>
         <script src="bower_components/nvd3/build/nv.d3.js"></script>
         <script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
         <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+        <script src="bower_components/underscore/underscore.js"></script>
+        <script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+        <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
+        <script src="bower_components/ui-leaflet/dist/ui-leaflet.js"></script>
+        <script src="bower_components/topojson/topojson.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -147,6 +152,8 @@
             <script src="scripts/filters/truncatechars.js"></script>
             <script src="scripts/controllers/target.js"></script>
             <script src="scripts/controllers/component.js"></script>
+            <script src="scripts/services/l.js"></script>
+            <script src="scripts/services/areatype.js"></script>
             <!-- endbuild -->
         </body>
 </html>

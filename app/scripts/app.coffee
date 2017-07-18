@@ -20,7 +20,8 @@ angular
     'ngTouch',
     'gettext',
     'nvd3',
-    'infinite-scroll'
+    'infinite-scroll',
+    'ui-leaflet'
   ]
   .config ($routeProvider, $locationProvider, $resourceProvider) ->
     $routeProvider
@@ -60,6 +61,8 @@ angular
         redirectTo: '/'
     $locationProvider.html5Mode true
     $resourceProvider.defaults.stripTrailingSlashes = false
-  .run ($rootScope, settings) ->
+  .run ($rootScope, settings, areatype) ->
     $rootScope.settings = settings
+    areatype.query {}, (data) ->
+       $rootScope.areatypes = data
 

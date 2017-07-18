@@ -2,16 +2,14 @@
 
 ###*
  # @ngdoc service
- # @name dgsDash.goal
+ # @name dgsDash.areatype
  # @description
- # # goal
+ # # areatype
  # Factory in the dgsDash.
 ###
-
 angular.module 'dgsDash'
-    .factory 'goal', ($resource, settings) ->
-
-        $resource settings.API_ROOT_URL + "/goals/:id/", {},
+    .factory 'areatype', ($resource, settings) ->
+        $resource settings.API_ROOT_URL + "/areatypes/:id/", {},
             query:
                 method: "GET"
                 isArray: false
