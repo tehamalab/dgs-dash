@@ -42,6 +42,7 @@ angular.module 'dgsDash'
             defaults:
                 scrollWheelZoom: false
                 tileLayer: 'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'
+                maxZoom: 9
             center:
                 lat: -6.3969
                 lng: 34.6287
