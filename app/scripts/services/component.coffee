@@ -8,7 +8,7 @@
  # Factory in the dgsDash.
 ###
 angular.module 'dgsDash'
-    .factory 'component', ($resource, $http, $rootScope, L, leafletData, settings, areatype) ->
+    .factory 'component', ($resource, $http, leafletData, L, settings, common, areatype) ->
 
         self = this
 
@@ -41,6 +41,7 @@ angular.module 'dgsDash'
         @_map =
             defaults:
                 scrollWheelZoom: false
+                tileLayer: 'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'
             center:
                 lat: -6.3969
                 lng: 34.6287
@@ -141,7 +142,7 @@ angular.module 'dgsDash'
                         yAxis: 1
                     chart.data.push targetChart
                 component.charts.push chart
-                @prepareMaps(component)
+            @prepareMaps(component)
 
         @prepareMaps = (component) ->
             if _.isEmpty(component.progress)
@@ -167,6 +168,7 @@ angular.module 'dgsDash'
                                 name: 'OpenStreetMap'
                                 url: 'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'
                         overlays: {}
+                        data: {}
                 for group in _groups
                     cdata = angular.copy(_cdata)
                     cdata.values = _.filter p, (i) -> _.isEqual(_.sortBy(group), _.sortBy(i.groups))
@@ -185,27 +187,24 @@ angular.module 'dgsDash'
                     unless _.isEmpty(map.data)
                         component.maps.push(map)
 
-            $http.get(_.findWhere($rootScope.areatypes.results, {code: 'region'}).topojson).then (response) ->
-                component.mapsReady = true
-                for cmap in component.maps
-                    baseMaps = {}
-                    baseMap  = L.tileLayer cmap.layers.baselayers.osm.url
-                    baseMaps[cmap.layers.baselayers.osm.name] = baseMap
-                    leafletData.getMap(cmap.id).then (leafletMap) ->
-                        cmap._map = leafletMap
-                        regions = angular.copy response.data
-                        for layer in cmap.data
-                            _layer = _.map(regions.objects.region.geometries, (item) ->
+            for cmap in component.maps
+                baseMaps = {}
+                baseMap  = L.tileLayer cmap.layers.baselayers.osm.url
+                baseMaps[cmap.layers.baselayers.osm.name] = baseMap
+                leafletData.getMap(cmap.id).then (leafletMap) ->
+                    cmap._map = leafletMap
+                    for layer in cmap.data
+                        cmap.layers.data[layer.year] = angular.copy common.geojson.region
+                        cmap.layers.data[layer.year].features = _.map(
+                            cmap.layers.data[layer.year].features, (item) ->
                                 feature = _.extend item.properties, _.findWhere(layer.values, area: item.properties.id)
                                 feature._domain = layer.domain
                                 _.extendOwn item.properties, feature
                                 item
-                            )
-                            regions.objects.region.geometries = _layer
-                            _layer = regions
-                            cmap.layers.overlays[layer.year] = L.topoJSON(
-                                _layer, {style: self._map.style, onEachFeature: self._map.onEachFeature}).addTo(cmap._map)
-                        baseMap.addTo(cmap._map)
+                        )
+                        cmap.layers.overlays[layer.year] = L.geoJSON(
+                            cmap.layers.data[layer.year],
+                            {style: self._map.style, onEachFeature: self._map.onEachFeature}).addTo(cmap._map)
 
         @_map.style = (feature) ->
             colorScale = self.getColorScale(feature.properties._domain)

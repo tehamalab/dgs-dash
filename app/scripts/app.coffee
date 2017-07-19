@@ -61,8 +61,5 @@ angular
         redirectTo: '/'
     $locationProvider.html5Mode true
     $resourceProvider.defaults.stripTrailingSlashes = false
-  .run ($rootScope, settings, areatype) ->
+  .run ($rootScope, settings) ->
     $rootScope.settings = settings
-    areatype.query {}, (data) ->
-       $rootScope.areatypes = data
-
