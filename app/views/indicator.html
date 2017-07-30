@@ -18,122 +18,164 @@
     </div>
 </div>
 
-<div class="container-wrapper">
-
-    <div class="container container-narrow">
-
-        <div class="panel panel-default panel-widget">
-            <div class="panel-body">
-                <div class="row page-info">
-                    <div class="col-sm-2 text-center">
-                        <strong class="text-uppercase" ng-if="indicator.goal_code" translate>Goal No</strong>
-                        <a ng-href="/goals/{{ goal.id }}/{{ goal.slug }}"><h2 style="color: {{ goal.extras.color_primary }}">{{ indicator.goal_code }}</h2></a>
-                    </div>
-                    <div class="col-sm-10">
-                        <div class="lead text-muted">
-                            <a class="" ng-href="/goals/{{ goal.id }}/{{ goal.slug }}"  style="color: {{ goal.extras.color_primary }}">{{ goal.description }}</a>
-                        </div>
-                        <div>
-                            <strong style="color: {{ goal.extras.color_primary }}" ng-if="target.description" translate>Target</strong>:
-                            <a class="text-default" ng-href="/targets/{{ target.id }}/{{ target.slug }}">{{ target.description||'-' }}</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="components-charts">
-            <div ng-repeat="component in components.results">
-                <div ng-repeat="chart in component.charts" class="panel panel-default">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-no-pad pane-left" ng-if="indicators.results">
+            <div>
+                <div>
                     <div class="page-header">
-                        <h2 class="text-center">
-                            <a class="text-default" ng-href="/components/{{ component.id }}/{{ component.slug }}">
-                                <strong>{{ chart.title }}</strong>
-                            </a>
-                        </h2>
+                        <h4 class="text-center text-uppercase" style="color: {{ goal.extras.color_primary }}" translate>
+                            Related indicators
+                        </h4>
                     </div>
-                    <div class="container-fluid">
-                        <nvd3 ng-if="!chart.hasOneValue" options="chart.options"
-                                data="chart.data">
-                        </nvd3>
-                        <div ng-if="chart.hasOneValue" class="text-center chart-single-value jumbotron">
-                            <div><strong class="text-muted">{{ chart.data[0].values[0].area_name }}</strong></div>
-                            <h1 style="color: {{ goal.extras.color_primary }}">
-                                {{ chart.data[0].values[0].value|number }}
-                            </h1>
-                            <h3 ng-if="component.value_unit" class="subtitle">{{ component.value_unit }}</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div id="components-maps">
-            <div class ng-repeat="component in components.results|filter:mapsReady:true">
-                <div ng-repeat="map in component.maps" class="panel panel-default">
-                    <div class="page-header">
-                        <a class="text-default" ng-href="/components/{{ component.id }}/{{ component.slug }}">
-                            <h2 class="text-center">
-                                <strong>{{ map.title }}</strong>
-                                <span class="text-info" ng-if="component.value_unit">({{ component.value_unit }})</span>
-                            </h2>
-                        </a>
-                    </div>
-                    <leaflet id="{{ map.id }}" style="height: 500px;background:#EEE;display:block"
-                            defaults="map.options.defaults" lf-center="map.options.center">
-                    </leaflet>
-                </div>
-            </div>
-        </div>
-
-        <div id="components-tables">
-            <div ng-repeat="component in components.results">
-                <div ng-repeat="(areaType, progress) in component.progress">
-                    <div class="panel panel-default">
-                        <div class="page-header">
-                            <h3 class="text-center">
-                                <a class="text-default" ng-href="/components/{{ component.id }}/{{ component.slug }}">
-                                    <strong>{{ component.name }}</strong>
+                    <div ng-repeat="_indicator in indicators.results"
+                            ng-class="{active: indicator.id == _indicator.id}"
+                            style="border-left-color: {{ goal.extras.color_primary }}"
+                            class="pane-li" >
+                        <div class="row">
+                            <div class="col-xs-2 text-center">
+                                <a style="color:{{ goal.extras.color_primary }}"
+                                        ng-href="/indicators/{{ _indicator.id }}/{{ _indicator.slug }}">
+                                    <strong>{{ _indicator.code }}</strong>
                                 </a>
-                            </h3>
-                        </div>
-                        <div class="panel-body">
-                            <table class="table table-striped table-scrollable table-progress">
-                                <thead>
-                                    <tr>
-                                        <th translate>Area</th>
-                                        <th translate>Year</th>
-                                        <th class="text-right" translate>Value <span ng-if="component.value_unit">({{ component.value_unit }})</span></th>
-                                        <th class="text-center" translate>Group</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="p in progress">
-                                        <td>{{ p.area_name }}</td>
-                                        <td>{{ p.year }}</td>
-                                        <td class="text-right">{{ p.value|number }}</td>
-                                        <td class="text-center">{{ p.groups.join(', ') }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="panel-footer text-right">
-                            <a class="btn btn-default"
-                                    ng-href="/components/{{ component.id }}/{{ component.slug }}">
-                                <i class="fa fa-eye"></i> <span translate>More details</span>
-                            </a>
-                            <a class="btn btn-primary"
-                                    ng-href="{{ settings.API_ROOT_URL }}/progress?component={{ component.id }}&area_type={{ areaType }}&format=csv">
-                                <i class="fa fa-download"></i> <span translate>Download data</span>
-                            </a>
+                            </div>
+                            <div class="col-xs-10">
+                                <div>
+                                    <a class="text-default" ng-href="/indicators/{{ _indicator.id }}/{{ _indicator.slug }}">{{ _indicator.name }}</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="indicator-metadata">
-        </div>
+        <div class="col-sm-9 col-no-pad" ng-if="components.results">
+            <div class="container-wrapper">
 
+                <div class="container container-narrow">
+
+                    <div class="panel panel-default panel-widget">
+                        <div class="panel-body">
+                            <div class="row page-info">
+                                <div class="col-sm-2 text-center" ng-if="goal.image_small">
+                                    <a ng-href="/goals/{{ goal.id }}/{{ goal.slug }}">
+                                        <img class="sdg-img" ng-src="{{ goal.image_small }}">
+                                    </a>
+                                </div>
+                                <div class="col-sm-2 text-center" ng-if="!goal.image_small">
+                                    <strong class="text-uppercase" ng-if="indicator.goal_code" translate>Goal No</strong>
+                                    <a ng-href="/goals/{{ goal.id }}/{{ goal.slug }}"><h2 style="color: {{ goal.extras.color_primary }}">{{ indicator.goal_code }}</h2></a>
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="lead text-muted">
+                                        <a class="" ng-href="/goals/{{ goal.id }}/{{ goal.slug }}"  style="color: {{ goal.extras.color_primary }}">{{ goal.description }}</a>
+                                    </div>
+                                    <div>
+                                        <strong style="color: {{ goal.extras.color_primary }}" ng-if="target.description" translate>Target</strong>:
+                                        <a class="text-default" ng-href="/targets/{{ target.id }}/{{ target.slug }}">{{ target.description||'-' }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="components-charts">
+                        <div ng-repeat="component in components.results">
+                            <div ng-repeat="chart in component.charts" class="panel panel-default">
+                                <div class="page-header">
+                                    <h2 class="text-center">
+                                        <a class="text-default" ng-href="/components/{{ component.id }}/{{ component.slug }}">
+                                            <strong>{{ chart.title }}</strong>
+                                        </a>
+                                    </h2>
+                                </div>
+                                <div class="container-fluid">
+                                    <nvd3 ng-if="!chart.hasOneValue" options="chart.options"
+                                            data="chart.data">
+                                    </nvd3>
+                                    <div ng-if="chart.hasOneValue" class="text-center chart-single-value jumbotron">
+                                        <div><strong class="text-muted">{{ chart.data[0].values[0].area_name }}</strong></div>
+                                        <h1 style="color: {{ goal.extras.color_primary }}">
+                                            {{ chart.data[0].values[0].value|number }}
+                                        </h1>
+                                        <h3 ng-if="component.value_unit" class="subtitle">{{ component.value_unit }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="components-maps">
+                        <div class ng-repeat="component in components.results|filter:mapsReady:true">
+                            <div ng-repeat="map in component.maps" class="panel panel-default">
+                                <div class="page-header">
+                                    <a class="text-default" ng-href="/components/{{ component.id }}/{{ component.slug }}">
+                                        <h2 class="text-center">
+                                            <strong>{{ map.title }}</strong>
+                                            <span class="text-info" ng-if="component.value_unit">({{ component.value_unit }})</span>
+                                        </h2>
+                                    </a>
+                                </div>
+                                <leaflet id="{{ map.id }}" style="height: 500px;background:#EEE;display:block"
+                                        defaults="map.options.defaults" lf-center="map.options.center">
+                                </leaflet>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="components-tables">
+                        <div ng-repeat="component in components.results">
+                            <div ng-repeat="(areaType, progress) in component.progress">
+                                <div class="panel panel-default">
+                                    <div class="page-header">
+                                        <h3 class="text-center">
+                                            <a class="text-default" ng-href="/components/{{ component.id }}/{{ component.slug }}">
+                                                <strong>{{ component.name }}</strong>
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <table class="table table-striped table-scrollable table-progress">
+                                            <thead>
+                                                <tr>
+                                                    <th translate>Area</th>
+                                                    <th translate>Year</th>
+                                                    <th class="text-right" translate>Value <span ng-if="component.value_unit">({{ component.value_unit }})</span></th>
+                                                    <th class="text-center" translate>Group</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="p in progress">
+                                                    <td>{{ p.area_name }}</td>
+                                                    <td>{{ p.year }}</td>
+                                                    <td class="text-right">{{ p.value|number }}</td>
+                                                    <td class="text-center">{{ p.groups.join(', ') }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="panel-footer text-right">
+                                        <a class="btn btn-default"
+                                                ng-href="/components/{{ component.id }}/{{ component.slug }}">
+                                            <i class="fa fa-eye"></i> <span translate>More details</span>
+                                        </a>
+                                        <a class="btn btn-primary"
+                                                ng-href="{{ settings.API_ROOT_URL }}/progress?component={{ component.id }}&area_type={{ areaType }}&format=csv">
+                                            <i class="fa fa-download"></i> <span translate>Download data</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="indicator-metadata">
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -13,32 +13,60 @@
     </div>
 </div>
 
-<div class="container-wrapper">
-    <div class="container">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-no-pad pane-left" ng-if="targets.results">
+            <div>
+                <div>
+                    <div class="page-header">
+                        <h4 class="text-center text-uppercase" style="color: {{ goal.extras.color_primary }}" translate>
+                            Related targets
+                        </h4>
+                    </div>
 
-        <div class="listing">
-
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="box-md-wrapper panel panel-default">
-                        <a class="text-default" ng-href="/goals/{{ goal.id }}/{{ goal.slug }}">
-                            <div class="page-header">
-                                <h3 class="text-center text-uppercase" translate>Goal</h3>
+                    <div ng-repeat="_target in targets.results"
+                            ng-class="{active: target.id == _target.id}"
+                            style="border-left-color: {{ goal.extras.color_primary }}"
+                            class="pane-li" >
+                        <div class="row">
+                            <div class="col-xs-2 text-center">
+                                <a style="color:{{ goal.extras.color_primary }}"
+                                        ng-href="/targets/{{ _target.id }}/{{ target.slug }}">
+                                    <strong>{{ _target.code }}</strong>
+                                </a>
                             </div>
-                            <div class="panel-body">
-                                <div class="panel-body">
-                                    <div>{{ goal.description }}</div>
+                            <div class="col-xs-10">
+                                <div>
+                                    <a class="text-default" ng-href="/targets/{{ _target.id }}/{{ _target.slug }}">{{ _target.name }}</a>
                                 </div>
                             </div>
-                            <img class="sdg-img" ng-src="{{ goal.image_medium }}">
-                        </a>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="col-sm-9">
-                    <div class="row">
+        <div class="col-sm-9 col-no-pad" ng-if="indicators.results">
+            <div class="container-wrapper">
+                <div class="container-fluid">
+                    <div>
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <a class="text-default" ng-href="/goals/{{ goal.id }}/{{ goal.slug }}">
+                                    <img class="sdg-img" ng-src="{{ goal.image_small }}">
+                                </a>
+                            </div>
+                            <div class="col-xs-10" style="vertical-align: middle">
+                                <a class="text-default" ng-href="/goals/{{ goal.id }}/{{ goal.slug }}">
+                                    {{ goal.description }}
+                                </a>
+                            </div>
+                        </div>
                         <div class="page-header">
-                            <h2 class="text-uppercase" translate>Indicators</h2>
+                            <h2 class="text-uppercase" translate>
+                                <span class="text-muted" ng-bind="indicators.results.length"></span>
+                                Indicators
+                            </h2>
                         </div>
                         <div ng-repeat="indicator in indicators.results" class="col-sm-4 col-no-pad">
                             <div class="box-md-wrapper panel panel-default">
@@ -70,6 +98,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>

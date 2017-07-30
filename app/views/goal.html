@@ -12,49 +12,46 @@
     </div>
 </div>
 
-<div class="container-wrapper">
-    <div class="container">
+<div class="container-fluid">
+    <div class="row">
+        <div ng-if="targets.results" class="col-sm-3 col-no-pad pane-left">
+            <div>
+                <div>
+                    <div class="page-header">
+                        <h4 class="text-center text-uppercase" style="color: {{ goal.extras.color_primary }}" translate>
+                            <span class="text-muted" ng-bind="targets.results.length"></span>
+                            Targets
+                        </h4>
+                    </div>
 
-        <div class="listing">
-
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="box-md-wrapper panel panel-default">
-                        <div class="panel-body">
-                            <div class="">
-                                <h2 class="text-center text-uppercase" translate>Targets</h2>
+                    <div ng-repeat="target in targets.results" class="pane-li">
+                        <div class="row">
+                            <div class="col-xs-2 text-center">
+                                <a style="color:{{ goal.extras.color_primary }}"
+                                        ng-href="/targets/{{ target.id }}/{{ target.slug }}">
+                                    <strong>{{ target.code }}</strong>
+                                </a>
                             </div>
-
-                            <div class="panel-body">
-                                <div class="timeline">
-                                    <div class="line text-muted"></div>
-                                    <div class="separator" ng-repeat-start="target in targets.results">
-                                        <h2>
-                                            <a style="color:{{ goal.extras.color_primary }}"
-                                                    ng-href="/targets/{{ target.id }}/{{ target.slug }}">
-                                                {{ target.code }}
-                                            </a>
-                                        </h2>
-                                    </div>
-                                    <div class="panel panel-default panel-outline">
-                                        <div class="panel-heading icon" >
-                                            <a ng-href="/targets/{{ target.id }}/{{ target.slug }}" style="color: {{ goal.extras.color_primary }}"><i class="fa fa-dot-circle-o"></i></a>
-                                        </div>
-                                        <div class="panel-body">
-                                            <a class="text-default" ng-href="/targets/{{ target.id }}/{{ target.slug }}">{{ target.name }}</a>
-                                        </div>
-                                    </div>
-                                    <span ng-repeat-end></span>
+                            <div class="col-xs-10">
+                                <div>
+                                    <a class="text-default" ng-href="/targets/{{ target.id }}/{{ target.slug }}">{{ target.name }}</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="col-sm-9">
-                    <div class="row">
+        <div class="col-sm-9 col-no-pad" ng-if="indicators.results">
+            <div class="container-wrapper">
+                <div class="container-fluid">
+                    <div class="listing">
                         <div class="page-header">
-                            <h2 class="text-uppercase" translate>Indicators</h2>
+                            <h2 class="text-uppercase" translate>
+                                <span class="text-muted" ng-bind="indicators.results.length"></span>
+                                Indicators
+                            </h2>
                         </div>
                         <div ng-repeat="indicator in indicators.results" class="col-sm-4 col-no-pad">
                             <div class="box-md-wrapper panel panel-default">
@@ -86,6 +83,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>

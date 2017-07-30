@@ -14,8 +14,8 @@ angular.module 'dgsDash'
         $scope.activeTab = 'charts'
         lookup.refresh()
 
-        indicator.query id: $routeParams.id, (indicator) ->
-            $scope.indicator = indicator
+        indicator.query id: $routeParams.id, (_indicator) ->
+            $scope.indicator = _indicator
             $rootScope.title = "#{$rootScope.settings.SITE_NAME} • #{$scope.indicator.name}"
             target.query id: $scope.indicator.target, (target) ->
                 $scope.target = target
@@ -23,6 +23,8 @@ angular.module 'dgsDash'
                 $scope.goal = goal
                 component._chart.chart.color[0] = $scope.goal.extras.color_primary
                 component._map.color.primary = $scope.goal.extras.color_primary
+            indicator.query goal: $scope.indicator.goal_id, (indicators) ->
+                $scope.indicators = indicators
 
         component.query indicators: $routeParams.id, (data) ->
             $scope.components = data
