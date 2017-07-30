@@ -33,8 +33,8 @@ angular.module 'dgsDash'
                     if $scope.progress.count % $scope.progress.results.length
                         _pages += 1
                     pages = []
-                    angular.forEach [2..pages], (i) ->
-                        pages.push(progress.query({indicator: $routeParams.id, page: i+2}).$promise)
+                    angular.forEach [1..pages], (i) ->
+                        pages.push(progress.query({indicator: $routeParams.id, page: i+1}).$promise)
                     $q.all(pages).then (data) ->
                         $scope.progress.next = null
                         $scope.progress.pages = _pages
