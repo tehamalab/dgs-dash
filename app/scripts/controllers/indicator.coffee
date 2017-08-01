@@ -11,10 +11,10 @@ angular.module 'dgsDash'
     .controller 'IndicatorCtrl', ($scope, $routeParams, $location, $rootScope, $q
                                   lookup, indicator, target, goal, component, progress) ->
 
-        $scope.activeTab = 'charts'
         lookup.refresh()
+        $scope.loading = true
 
-        indicator.query id: $routeParams.id, (_indicator) ->
+        indicatorq = indicator.query id: $routeParams.id, (_indicator) ->
             $scope.indicator = _indicator
             $rootScope.title = "#{$rootScope.settings.SITE_NAME} • #{$scope.indicator.name}"
             target.query id: $scope.indicator.target, (target) ->
@@ -26,7 +26,7 @@ angular.module 'dgsDash'
             indicator.query goal: $scope.indicator.goal_id, (indicators) ->
                 $scope.indicators = indicators
 
-        component.query indicators: $routeParams.id, (data) ->
+        componentsq = component.query indicators: $routeParams.id, (data) ->
             $scope.components = data
             progress.query indicator: $routeParams.id, (data) ->
                 $scope.progress = data
@@ -51,6 +51,13 @@ angular.module 'dgsDash'
                         _progress = _.where $scope.progress.results, component: _component.id
                         _component.progress = _(_progress).groupBy (progress) -> return progress.area_type_name
                         component.prepare(_component)
+
+        $q.all([
+            indicatorq.$promise
+            componentsq.$promise
+        ]).then ->
+            $scope.loading = false
+            return
 
         $scope.showMapLayer = (layer, map) ->
             console.log layer, map

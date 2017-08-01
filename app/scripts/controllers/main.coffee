@@ -11,9 +11,11 @@ angular.module 'dgsDash'
     .controller 'MainCtrl', ($scope, $rootScope, lookup, goal) ->
         
         lookup.refresh()
+        $scope.loading = true
         $scope.plan_code = 'sdgs'
 
         goal.query {plan_code: $scope.plan_code}, (data) ->
+            $scope.loading = false
             $scope.goals = data
             $rootScope.title = "#{$rootScope.settings.SITE_NAME}"
 

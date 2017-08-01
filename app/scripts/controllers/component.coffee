@@ -11,6 +11,7 @@ angular.module 'dgsDash'
     .controller 'ComponentCtrl', ($scope, $routeParams, $rootScope, lookup, component, progress) ->
         lookup.refresh()
         $scope.component = {}
+        $scope.loading = true
 
         _chart =
             chart:
@@ -39,6 +40,7 @@ angular.module 'dgsDash'
                 color: d3.scale.category20().range()
 
         component.query id: $routeParams.id, (data) ->
+            $scope.loading = false
             _.extendOwn($scope.component, data)
             $rootScope.title = "#{$rootScope.settings.SITE_NAME} • #{$scope.component.name}"
             progress.query component: $routeParams.id, (progress) ->

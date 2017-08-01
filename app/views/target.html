@@ -14,6 +14,11 @@
 </div>
 
 <div class="container-fluid">
+
+    <div class="text-center text-muted" ng-if="loading">
+        <i style="color: {{ goal.extras.color_primary || 'inherit' }}" class="fa fa-spin fa-3x fa-spinner"></i>
+    </div>
+
     <div class="row">
         <div class="col-sm-3 col-no-pad pane-left" ng-if="targets.results">
             <div>
