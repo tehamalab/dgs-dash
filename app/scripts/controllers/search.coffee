@@ -18,6 +18,10 @@ angular.module 'dgsDash'
             $scope.loading = false
             $scope.loadingMore = false
             $rootScope.title = "#{$rootScope.settings.SITE_NAME} • Search"
+            $scope.GOAL = 'goal'
+            $scope.TARGET = 'target'
+            $scope.INDICATOR = 'indicator'
+            $scope.COMPONENT = 'component'
             $scope.object_urls =
                 goal: 'goals'
                 target: 'targets'

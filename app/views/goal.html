@@ -75,6 +75,9 @@
                                     </div>
                                 </a>
                                 <div class="panel-footer text-right">
+                                    <span ng-if="!indicator.progress_count"  class="label label-warning" translate>
+                                        No statistics yet
+                                    </span>
                                     <a class="btn btn-default btn-sm"
                                             ng-href="/indicators/{{ indicator.id }}/{{ indicator.slug }}"
                                             style="color: {{ goal.extras.color_primary }}">
