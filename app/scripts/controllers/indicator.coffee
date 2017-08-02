@@ -30,6 +30,7 @@ angular.module 'dgsDash'
             $scope.components = data
             progress.query indicator: $routeParams.id, (data) ->
                 $scope.progress = data
+                $scope.loading = true
                 if $scope.progress.next?
                     _pages = Math.floor($scope.progress.count / $scope.progress.results.length)
                     if $scope.progress.count % $scope.progress.results.length
@@ -51,6 +52,7 @@ angular.module 'dgsDash'
                         _progress = _.where $scope.progress.results, component: _component.id
                         _component.progress = _(_progress).groupBy (progress) -> return progress.area_type_name
                         component.prepare(_component)
+                $scope.loading = false
 
         $q.all([
             indicatorq.$promise
