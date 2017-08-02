@@ -27,11 +27,15 @@
         <!-- Add your site or application content here -->
         <div class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="NavCtrl">
             <div class="nav-goals-strip">
-                <a ng-repeat='goal in goals.results'
-                    ng-href="/#!/goals/{{ goal.id }}/{{ goal.slug }}"
-                    data-toggle="tooltip" title="{{ goal.name }}"
-                    class="nav-goals-strip-item"
-                    style="background: {{ goal.extras.color_primary||'#fff' }}">
+                <a ng-repeat='_goal in goals.results'
+                        ng-href="/#!/goals/{{ _goal.id }}/{{ _goal.slug }}"
+                        ng-mouseenter="goalHovered = _goal.id"
+                        ng-mouseleave="goalHovered = null"
+                        ng-class="{hovered: _goal.id == goalHovered}"
+                        data-toggle="tooltip" title="{{ _goal.name }}"
+                        class="nav-goals-strip-item"
+                        style="background: {{ _goal.extras.color_primary||'#fff' }}">
+                    <img ng-show="_goal.id == goalHovered" ng-src="{{ _goal.image_small }}">
                 </a>
             </div>
             <div class="container">

@@ -68,9 +68,20 @@ a:focus {
 
 .nav-goals-strip-item {
     width: 5.88%;
-    height: 100%;
+    min-height: 100%;
     display: inline-block;
     overflow: hidden;
+    vertical-align: top;
+    position: relative;
+}
+
+.nav-goals-strip-item.hovered{
+    max-height: 100px;
+    z-index: 1040;
+}
+
+.nav-goals-strip-item img{
+    max-width: 100%;
 }
 
 .footer {

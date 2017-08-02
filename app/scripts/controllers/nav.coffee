@@ -12,6 +12,7 @@ angular.module 'dgsDash'
         lookup.search = {}
         $scope.lookup = lookup
         $scope.plan_code = 'sdgs'
+        $scope.goalHovered = null
 
         goal.query {plan_code: $scope.plan_code}, (data) ->
             $scope.goals = data
