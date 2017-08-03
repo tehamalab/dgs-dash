@@ -62,14 +62,48 @@
                             <div class="box-md-wrapper panel panel-default">
                                 <a ng-href="/indicators/{{ indicator.id }}/{{ indicator.slug }}"
                                     class="box-md text-default">
-                                    <div class="page-header box-md-header">
+                                    <div class="page-header page-header-md box-md-header">
                                         <div class="row">
                                             <div class="col-sm-4 text-center">
                                                 <strong class="text-uppercase" translate>Indictor</strong>
-                                                <h2 style="color: {{ goal.extras.color_primary }}">{{ indicator.code }}</h2>
+                                                <h3 style="color: {{ goal.extras.color_primary }}">{{ indicator.code }}</h3>
                                             </div>
                                             <div class="col-sm-8">
-                                                <div>{{ indicator.name|truncatechars:150 }}</div>
+                                                <div>{{ indicator.name|truncatechars:100 }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div ng-if="indicator.progress_preview.length" class="row">
+                                            <div class="col-xs-6 text-center">
+                                                <strong>
+                                                    {{ indicator.progress_preview[0].extras.component_name|truncatechars:85 }}
+                                                </strong>
+                                                <div>
+                                                    <strong class="text-info">{{ indicator.progress_preview[0].extras.area_name }}</strong><br>
+                                                    {{ indicator.progress_preview[0].year }}
+                                                    <span  ng-if="indicator.progress_preview[0].groups.length">
+                                                        ({{ indicator.progress_preview[0].groups.join(', ') }})
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="text-center chart-single-value col-xs-6">
+                                                <h1 style="color: {{ goal.extras.color_primary }}">
+                                                    {{ indicator.progress_preview[0].value|shortnumber }}
+                                                </h1>
+                                                <strong ng-if="indicator.progress_preview[0].extras.value_unit" class="subtitle">
+                                                    {{ indicator.progress_preview[0].extras.value_unit }}
+                                                </strong>
+                                            </div>
+                                        </div>
+                                        <div ng-if="!indicator.progress_preview.length && !indicator.progress_count" class="text-transparent">
+                                            <div class="text-muted text-center">
+                                                <h2>
+                                                    <span class="fa-stack fa-lg" aria-hidden="true">
+                                                        <i class="fa fa-signal fa-stack-1x"></i>
+                                                    </span>
+                                                </h2>
+                                                <span>No statistics yet</span>
                                             </div>
                                         </div>
                                     </div>
@@ -82,7 +116,7 @@
                                             ng-href="/indicators/{{ indicator.id }}/{{ indicator.slug }}"
                                             style="color: {{ goal.extras.color_primary }}">
                                         <i class="fa fa-line-chart"></i>
-                                        <translate>View</translate>
+                                        <translate>View more</translate>
                                     </a>
                                 </div>
                             </div>
