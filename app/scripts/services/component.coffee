@@ -8,7 +8,7 @@
  # Factory in the dgsDash.
 ###
 angular.module 'dgsDash'
-    .factory 'component', ($resource, $http, leafletData, L, settings, common, areatype) ->
+    .factory 'component', ($resource, $q, leafletData, L, settings, common, areatype) ->
 
         self = this
 
@@ -187,25 +187,26 @@ angular.module 'dgsDash'
                         map.data.push cdata
                     unless _.isEmpty(map.data)
                         component.maps.push(map)
-
-            for cmap in component.maps
-                baseMaps = {}
-                baseMap  = L.tileLayer cmap.layers.baselayers.osm.url
-                baseMaps[cmap.layers.baselayers.osm.name] = baseMap
-                leafletData.getMap(cmap.id).then (leafletMap) ->
-                    cmap._map = leafletMap
-                    for layer in cmap.data
-                        cmap.layers.data[layer.year] = JSON.parse(JSON.stringify(common.geojson.region))
-                        cmap.layers.data[layer.year].features = _.map(
-                            cmap.layers.data[layer.year].features, (item) ->
-                                feature = _.extend item.properties, _.findWhere(layer.values, area: item.properties.id)
-                                feature._domain = layer.domain
-                                _.extendOwn item.properties, feature
-                                item
-                        )
-                        cmap.layers.overlays[layer.year] = L.geoJSON(
-                            cmap.layers.data[layer.year],
-                            {style: self._map.style, onEachFeature: self._map.onEachFeature}).addTo(cmap._map)
+            $q.all([common.areatypesq]).then (_d) ->
+                $q.all([common.regionsq]).then (_d) ->
+                    for cmap in component.maps
+                        baseMaps = {}
+                        baseMap  = L.tileLayer cmap.layers.baselayers.osm.url
+                        baseMaps[cmap.layers.baselayers.osm.name] = baseMap
+                        leafletData.getMap(cmap.id).then (leafletMap) ->
+                            cmap._map = leafletMap
+                            for layer in cmap.data
+                                cmap.layers.data[layer.year] = JSON.parse(JSON.stringify(common.geojson.region))
+                                cmap.layers.data[layer.year].features = _.map(
+                                    cmap.layers.data[layer.year].features, (item) ->
+                                        feature = _.extend item.properties, _.findWhere(layer.values, area: item.properties.id)
+                                        feature._domain = layer.domain
+                                        _.extendOwn item.properties, feature
+                                        item
+                                )
+                                cmap.layers.overlays[layer.year] = L.geoJSON(
+                                    cmap.layers.data[layer.year],
+                                    {style: self._map.style, onEachFeature: self._map.onEachFeature}).addTo(cmap._map)
 
         @_map.style = (feature) ->
             colorScale = self.getColorScale(feature.properties._domain)
