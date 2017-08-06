@@ -195,7 +195,7 @@ angular.module 'dgsDash'
                 leafletData.getMap(cmap.id).then (leafletMap) ->
                     cmap._map = leafletMap
                     for layer in cmap.data
-                        cmap.layers.data[layer.year] = angular.copy common.geojson.region
+                        cmap.layers.data[layer.year] = JSON.parse(JSON.stringify(common.geojson.region))
                         cmap.layers.data[layer.year].features = _.map(
                             cmap.layers.data[layer.year].features, (item) ->
                                 feature = _.extend item.properties, _.findWhere(layer.values, area: item.properties.id)
