@@ -20,7 +20,7 @@
                 </h4>
                 <div class="text-right">
                     <a ng-href="{{ settings.API_ROOT_URL }}/progress?component={{ component.id }}&format=csv"
-                            class="btn btn-lg btn-default">
+                            class="btn btn-lg btn-default" target="_self">
                         <i class="fa fa-download"></i> <strong translate>Download Data</strong>
                     </a>
                 </div>
@@ -99,7 +99,7 @@
                             </table>
                         </div>
                         <div class="panel-footer text-right">
-                            <a class="btn btn-primary"
+                            <a class="btn btn-primary" target="_self"
                                     ng-href="{{ settings.API_ROOT_URL }}/progress?component={{ component.id }}&area_type={{ areaType }}&format=csv">
                                 <i class="fa fa-download"></i> <span translate>Download data</span>
                             </a>
