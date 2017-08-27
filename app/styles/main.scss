@@ -191,6 +191,7 @@ a:focus {
 .container-wrapper{
     background: $container-wrapper-bg;
     padding-top: 20px;
+    padding-bottom: 40px;
 }
 
 .panel-widget{
@@ -216,16 +217,48 @@ a:focus {
    padding-left: 5px;
    padding-right: 5px;
 }
+.goal-box {
+    min-height: 200px;
+}
 
+.goal-box-container {
+    display: table;
+    width: 99%;
+    height: 250px;
+    background: #222;
+    margin: auto;
+    a {
+        color: $body-bg;
+    }
+}
+.goal-box-body{
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px;
+}
 .text-default,
 .text-default:hover,
 .text-default:focus {
     color: $text-color;
     text-decoration: none;
 }
+
 .text-transparent{
     opacity: 0.5
 }
+
+.text-pre{
+    white-space: pre-line;
+}
+
+.text-lengthy {
+    padding-top: 10px;
+    font-size: 18px;
+    line-height: 1.6;
+    letter-spacing: 0.007em;
+    font-weight: 600;
+}
+
 .btn.btn-spaced {
     margin: 5px;
 }

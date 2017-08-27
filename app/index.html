@@ -62,9 +62,23 @@
                         </div>
                     </form>
 
-                    <ul class="nav navbar-nav">
-                        <li><a ng-href="/#!/data" translate>Data</a></li>
-                        <li><a ng-href="/#!/about">About</a></li>
+                    <ul class="nav navbar-nav" ng-if="plans.count <= 3">
+                        <li ng-repeat="plan in plans.results|orderBy: 'name'">
+                            <a ng-href="/plans/{{ plan.id }}/{{ plan.slug }}"><strong>{{ plan.code }}</strong></a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav" ng-if="plans.count > 3">
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                <span translate>Development Goals</span> <i class="small fa fa-chevron-right"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="plan in plans.results|orderBy: 'name'">
+                                    <a ng-href="/plans/{{ plan.id }}/{{ plan.slug }}"><strong>{{ plan.code }}</strong></a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -81,6 +95,15 @@
                                         <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
                                     </div>
                                 </li>
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                <i class="fa fa-ellipsis-v"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a ng-href="/#!/data" translate>Data</a></li>
+                                <li><a ng-href="/#!/about">About</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -160,6 +183,9 @@
             <script src="scripts/services/areatype.js"></script>
             <script src="scripts/services/common.js"></script>
             <script src="scripts/filters/shortnumber.js"></script>
+            <script src="scripts/controllers/plan.js"></script>
+            <script src="scripts/services/plan.js"></script>
+            <script src="scripts/services/theme.js"></script>
             <!-- endbuild -->
         </body>
 </html>

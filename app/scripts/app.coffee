@@ -49,6 +49,10 @@ angular
         templateUrl: 'views/component.html'
         controller: 'ComponentCtrl'
         controllerAs: 'component'
+      .when '/plans/:id/:slug',
+        templateUrl: 'views/plan.html'
+        controller: 'PlanCtrl'
+        controllerAs: 'plan'
       .when '/data',
         templateUrl: 'views/data.html'
         controller: 'DataCtrl'

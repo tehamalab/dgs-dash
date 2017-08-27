@@ -12,7 +12,7 @@ angular.module 'dgsDash'
         
         lookup.refresh()
         $scope.loading = true
-        $scope.plan_code = 'sdgs'
+        $scope.plan_code = 'SDGs'
 
         goal.query {plan_code: $scope.plan_code}, (data) ->
             $scope.loading = false

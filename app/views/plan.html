@@ -1,0 +1,56 @@
+<div class="page-header-dg">
+    <div class="container">
+        <div class="row" ng-if="plan.id">
+            <div ng-if="plan.image_medium" class="col-sm-2 text-center">
+                <img  class="img-responsive" ng-src="{{ plan.image_medium }}">
+            </div>
+            <div class="col-sm-10">
+                <h1><strong>{{ plan.name }}</strong> <small><span class="text-info">({{ plan.code }})</span></small></h1>
+                <h4 class="subtitle" ng-if="plan.caption">
+                    <strong class="">{{ plan.caption }}</strong>
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-wrapper">
+    <div class="container">
+        <div class="text-center text-muted" ng-if="loading">
+            <i class="fa fa-spin fa-3x fa-spinner"></i>
+        </div>
+
+        <div ng-if="themes.results.length">
+            <h2 class="text-center text-muted">
+                <strong translate>{{ themes.count }} Themes</strong>
+            </h2>
+            <div class="row">
+                <div ng-repeat="theme in themes.results" class="col-sm-3 col-no-pad goal-box">
+                    <div class="goal-box-container">
+                        <div class="goal-box-body">
+                            <a ng-href="">
+                                <h3 class="text-center">{{ theme.name }}</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="goals.results.length">
+            <h2 class="text-center text-muted">
+                <strong translate>{{ goals.count }} Goals</strong>
+            </h2>
+            <div class="row">
+                <div ng-repeat="goal in goals.results" class="col-sm-2 col-no-pad"><a ng-href="/goals/{{ goal.id }}/{{ goal.slug }}"><img ng-src="{{ goal.image_medium }}" class="sdg-img"></a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-header-dg" ng-if="plan.description">
+    <div class="container container-narrow">
+        <div class="text-pre text-lengthy">{{ plan.description }}</div>
+    </div>
+</div>
