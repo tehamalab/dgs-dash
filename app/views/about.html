@@ -1,1 +1,13 @@
-<p>This is the about view.</p>
+<div class="text-center text-muted" ng-if="loading">
+    <i class="fa fa-spin fa-3x fa-spinner"></i>
+</div>
+
+<div class="container container-narrow">
+    <div ng-repeat="plan in plans.results|orderBy: 'name'">
+        <div class="page-header">
+            <h2><strong class="text-info">{{ plan.name }}</strong></h2>
+            <div class="text-success text-lengthy">{{ plan.caption }}</div>
+        </div>
+        <div class="text-pre text-lengthy">{{ plan.description }}</div>
+    </div>
+</div>
