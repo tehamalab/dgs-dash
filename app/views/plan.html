@@ -29,6 +29,9 @@
                 <div ng-repeat="theme in themes.results" class="col-sm-3 col-no-pad goal-box">
                     <a class="goal-box-container" ng-href="/themes/{{ theme.id }}/{{ theme.slug }}">
                         <div class="goal-box-body">
+                            <h1 class="text-transparent text-center" ng-if="theme.code">
+                                <strong>{{ theme.code }}</strong>
+                            </h1>
                             <h3 class="text-center">{{ theme.name }}</h3>
                         </div>
                     </a>
