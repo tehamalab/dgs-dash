@@ -33,6 +33,14 @@ angular
         templateUrl: 'views/search.html'
         controller: 'SearchCtrl'
         controllerAs: 'search'
+      .when '/plans/:id/:slug',
+        templateUrl: 'views/plan.html'
+        controller: 'PlanCtrl'
+        controllerAs: 'plan'
+      .when '/themes/:id/:slug',
+        templateUrl: 'views/theme.html'
+        controller: 'ThemeCtrl'
+        controllerAs: 'theme'
       .when '/goals/:id/:slug',
         templateUrl: 'views/goal.html'
         controller: 'GoalCtrl'
@@ -49,10 +57,6 @@ angular
         templateUrl: 'views/component.html'
         controller: 'ComponentCtrl'
         controllerAs: 'component'
-      .when '/plans/:id/:slug',
-        templateUrl: 'views/plan.html'
-        controller: 'PlanCtrl'
-        controllerAs: 'plan'
       .when '/data',
         templateUrl: 'views/data.html'
         controller: 'DataCtrl'

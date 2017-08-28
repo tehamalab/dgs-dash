@@ -159,13 +159,12 @@ a:focus {
 .page-header-dg {
     display: block;
     min-height: 150px;
-    padding-bottom: 20px;
     padding-top: 20px;
-}
+    border-bottom: 1px solid $panel-default-border;
 
-.page-header-dg {
     &.themed {
         color: #FFF;
+        padding-bottom: 20px;
     }
 }
 
@@ -231,6 +230,10 @@ a:focus {
         color: $body-bg;
     }
 }
+a.goal-box-container {
+    color: $body-bg;
+}
+
 .goal-box-body{
     display: table-cell;
     vertical-align: middle;

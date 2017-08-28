@@ -2,30 +2,30 @@
 
 ###*
  # @ngdoc function
- # @name dgsDash.controller:GoalCtrl
+ # @name dgsDash.controller:ThemeCtrl
  # @description
- # # GoalCtrl
+ # # ThemeCtrl
  # Controller of the dgsDash
 ###
 angular.module 'dgsDash'
-    .controller 'GoalCtrl', ($scope, $routeParams, $location, $rootScope, $q, lookup, goal, target, indicator) ->
+    .controller 'ThemeCtrl', ($scope, $routeParams, $location, $rootScope, $q, lookup, theme, sector, indicator) ->
         lookup.refresh()
         $scope.loading = true
 
-        goalsq = goal.query id: $routeParams.id, (data) ->
-            $scope.goal = data
-            $rootScope.title = "#{$rootScope.settings.SITE_NAME} • #{$scope.goal.name}"
+        themeq = theme.query id: $routeParams.id, (data) ->
+            $scope.theme = data
+            $rootScope.title = "#{$rootScope.settings.SITE_NAME} • #{$scope.theme.name}"
 
-        indicatorsq = indicator.query goal: $routeParams.id, (data) ->
+        sectorsq = sector.query themes: $routeParams.id, (data) ->
+            $scope.sectors = data
+
+        indicatorsq = indicator.query theme: $routeParams.id, (data) ->
             $scope.indicators = data
 
-        targetsq = target.query goal: $routeParams.id, (data) ->
-            $scope.targets = data
-
         $q.all([
-            goalsq.$promise
+            themeq.$promise
+            sectorsq.$promise
             indicatorsq.$promise
-            targetsq.$promise
         ]).then ->
             # load additional indicator pages if they exist
             if $scope.indicators.next?
@@ -35,7 +35,7 @@ angular.module 'dgsDash'
                     pages = []
                     angular.forEach [1..pages], (i) ->
                         if i > 0
-                            pages.push(indicator.query({goal: $routeParams.id, page: i+1}).$promise)
+                            pages.push(indicator.query({theme: $routeParams.id, page: i+1}).$promise)
                     $q.all(pages).then (data) ->
                         $scope.loading = false
                         $scope.indicators.next = null
