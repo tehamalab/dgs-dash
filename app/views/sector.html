@@ -1,21 +1,17 @@
-<div class="page-header-dg" style="background: {{ goal.extras.color_primary }}">
+<div class="page-header-dg" style="background: {{ sector.extras.color_primary }}">
     <div class="container">
         <div class="row">
-            <div ng-if="theme.image_medium" class="col-sm-2 text-center">
-                <img  class="img-responsive" ng-src="{{ theme.image_medium }}">
+            <div ng-if="sector.image_medium" class="col-sm-2 text-center">
+                <img  class="img-responsive" ng-src="{{ sector.image_medium }}">
             </div>
-            <div ng-if="!theme.image_medium" class="col-sm-2 text-center">
+            <div ng-if="!sector.image_medium" class="col-sm-2 text-center">
                 <div class="jumbotron jumbotron-no-pad">
-                    <h3 class="text-uppercase text-muted" translate>Theme</h3>
-                    <h1>{{ theme.code }}</h1>
+                    <h3 class="text-uppercase text-muted" translate>Sector code</h3>
+                    <h1>{{ sector.code }}</h1>
                 </div>
             </div>
             <div class="col-md-8">
-                <h4 ng-if="theme.plans_names.length">
-                    <a class="subtitle" ng-href="/"><span class="text-info">{{ theme.plans_names.join(', ') }}</span></a>
-                </h4>
-                <h1><strong>{{ theme.name }}</strong></h1>
-                <div ng-if="theme.caption" class="lead text-muted">{{ theme.caption }}</div>
+                <h1><strong>{{ sector.name }}</strong></h1>
             </div>
         </div>
     </div>
@@ -37,17 +33,20 @@
                         </h4>
                     </div>
 
-                    <div ng-repeat="sector in sectors.results" class="pane-li">
+                    <div ng-repeat="_sector in sectors.results"
+                            ng-class="{active: sector.id == _sector.id}"
+                            style="border-left-color: green"
+                            class="pane-li" >
                         <div class="row">
-                            <div class="col-xs-2 col-xs-offset-{{ sector.level }} text-center">
+                            <div class="col-xs-2 col-xs-offset-{{ _sector.level }} text-center">
                                 <a style="color:{{ goal.extras.color_primary }}"
-                                        ng-href="/sectors/{{ sector.id }}/{{ sector.slug }}">
-                                    <strong>{{ sector.code }}</strong>
+                                        ng-href="/sectors/{{ _sector.id }}/{{ _sector.slug }}">
+                                    <strong>{{ _sector.code }}</strong>
                                 </a>
                             </div>
-                            <div class="col-xs-{{ 10 - sector.level }}">
+                            <div class="col-xs-{{ 10 - _sector.level }}">
                                 <div>
-                                    <a class="text-default" ng-href="/sectors/{{ sector.id }}/{{ sector.slug }}">{{ sector.name }}</a>
+                                    <a class="text-default" ng-href="/sectors/{{ _sector.id }}/{{ _sector.slug }}">{{ _sector.name }}</a>
                                 </div>
                             </div>
                         </div>

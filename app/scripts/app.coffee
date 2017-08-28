@@ -41,6 +41,10 @@ angular
         templateUrl: 'views/theme.html'
         controller: 'ThemeCtrl'
         controllerAs: 'theme'
+      .when '/sectors/:id/:slug',
+        templateUrl: 'views/sector.html'
+        controller: 'SectorCtrl'
+        controllerAs: 'sector'
       .when '/goals/:id/:slug',
         templateUrl: 'views/goal.html'
         controller: 'GoalCtrl'
