@@ -20,7 +20,7 @@ angular.module 'dgsDash'
         goalsq = goal.query {plan: $routeParams.id}, (data) ->
             $scope.goals = data
 
-        themesq = theme.query {plans: $routeParams.id}, (data) ->
+        themesq = theme.query {plan: $routeParams.id}, (data) ->
             $scope.themes = data
 
         $q.all([
