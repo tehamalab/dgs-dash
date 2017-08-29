@@ -1,43 +1,33 @@
 <div class="container-wrapper">
     <div class="container">
 
-        <div class="search-facets">
-            <span class="btn btn-primary">
-                <span class="badge" ng->
-                    <i class="fa fa-spinner fa-spin" ng-if='loading'></i>
-                    {{ data.count }}
+        <form class="form-inline search-facets">
+            <div class="form-group">
+                <select class="form-control"
+                        ng-model="lookup.search.object_type"
+                        ng-change="update()"
+                        ng-options="k as v for (k, v) in objectTypeLabels">
+                    <option value="" translate>Everthing</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <span class="btn btn-primary">
+                    <span class="badge" ng->
+                        <i class="fa fa-spinner fa-spin" ng-if='loading'></i>
+                        {{ data.count }}
+                    </span>
+                    <translate>results</translate>
                 </span>
-                <translate>results</translate>
-            </span>
 
-            <a class="btn btn-default" ng-if="facets.object_type.goal" ng-click="update({'object_type': 'goal'})">
-                <span class="badge">{{ facets.object_type.goal }}</span>
-                <translate>goals</translate>
-            </a>
-
-            <span class="btn btn-default" ng-if="facets.object_type.target" ng-click="update({'object_type': 'target'})">
-                <span class="badge">{{ facets.object_type.target }}</span>
-                <translate>targets</translate>
-            </span>
-
-            <span class="btn btn-default" ng-if="facets.object_type.indicator" ng-click="update({'object_type': 'indicator'})">
-                <span class="badge">{{ facets.object_type.indicator }}</span>
-                <translate>indicators</translate>
-            </span>
-
-            <span class="btn btn-default" ng-if="facets.object_type.component" ng-click="update({'object_type': 'component'})">
-                <span class="badge">{{ facets.object_type.component }}</span>
-                <translate>components</translate>
-            </span>
-
-            <a class="btn btn-link" ng-if="!loading" ng-click="refresh({'q': lookup.search.q})">
-                <span class="text-muted">
-                    <i class="fa fa-refresh"></i>
-                    <translate ng-if="lookup.search.object_type">all results</translate>
-                    <translate ng-if="!lookup.search.object_type">refresh</translate>
-                </span>
-            </a>
-        </div>
+                <a class="btn btn-link" ng-if="!loading" ng-click="refresh({'q': lookup.search.q})">
+                    <span class="text-muted">
+                        <i class="fa fa-refresh"></i>
+                        <translate ng-if="lookup.search.object_type">all results</translate>
+                        <translate ng-if="!lookup.search.object_type">refresh</translate>
+                    </span>
+                </a>
+            </div>
+        </form>
 
         <div class="row">
             <div class="col-sm-9">
@@ -50,6 +40,7 @@
                                 </div>
                                 <div ng-if="!result.image_medium" class="col-sm-3 text-center">
                                     <div class="jumbotron jumbotron-no-pad">
+                                        <div ng-if="result.plan_code"><strong class="text-danger">{{ result.plan_code }}</strong></div>
                                         <h3 class="text-uppercase text-muted" translate>{{ result.object_type }}</h3>
                                         <h1>{{ result.code }}</h1>
                                     </div>
@@ -58,13 +49,29 @@
                                     <div class="result-header">
                                             <div class="page-header">
                                                 <h3>
-                                                    <a ng-href="{{ object_url(result.object_type, [result.id, result.slug]) }}" class="text-default">
+                                                    <a ng-href="{{ objectUrl(result.object_type, [result.id, result.slug]) }}" class="text-default">
                                                         <strong>{{ result.name }}</strong>
                                                     </a>
                                                 </h3>
                                             </div>
+                                            <div class="text-pre">{{ result.description|truncatechars:255 }}</div>
                                             <div>
-                                                {{ result.description }}
+                                                <span class="text-info" ng-if="result.goal_name">
+                                                    <strong translate>Goal</strong>:
+                                                    <span class="text-info">{{ result.goal_name }}</span>
+                                                </span>
+                                                <span ng-if="result.goals_names">
+                                                    <strong translate>Goals</strong>:
+                                                    <span class="text-info">{{ result.goals_names.join(', ') }}</span>
+                                                </span>
+                                                <span ng-if="result.theme_name">
+                                                    <strong translate>Theme</strong>:
+                                                    <span class="text-info">{{ result.theme_name }}</span>
+                                                </span>
+                                                <span ng-if="result.themes_names">
+                                                    <strong translate>Themes</strong>:
+                                                    <span class="text-info">{{ result.themes_names.join(', ') }}</span>
+                                                </span>
                                             </div>
                                             <div class="text-right">
                                                 <span class="label label-warning" ng-if="
@@ -81,7 +88,26 @@
                     </div>
                     <div class="text-center" ng-show="loadingMore"><i class="fa fa-spinner fa-spin fa-2x text-info"></i></div>
                 </div>
+                <div class="col-sm-3">
+                    <div class="search-facets">
 
+                        <span class="btn btn-default"
+                                ng-repeat="(key, value) in objectTypeLabels"
+                                ng-if="facets.object_type[key]"
+                                ng-click="update({'object_type': key})">
+                            <span class="badge">{{ facets.object_type[key] }}</span>
+                            <translate>{{ value }}</translate>
+                        </span>
+
+                        <a class="btn btn-link" ng-if="!loading" ng-click="refresh({'q': lookup.search.q})">
+                            <span class="text-muted">
+                                <i class="fa fa-refresh"></i>
+                                <translate ng-if="lookup.search.object_type">all results</translate>
+                                <translate ng-if="!lookup.search.object_type">refresh</translate>
+                            </span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 

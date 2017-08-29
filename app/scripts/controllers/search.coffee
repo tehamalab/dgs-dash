@@ -22,11 +22,22 @@ angular.module 'dgsDash'
             $scope.TARGET = 'target'
             $scope.INDICATOR = 'indicator'
             $scope.COMPONENT = 'component'
-            $scope.object_urls =
+            $scope.objectUrls =
+                plan: 'plans'
+                theme: 'themes'
                 goal: 'goals'
+                sector: 'sectors'
                 target: 'targets'
                 indicator: 'indicators'
                 component: 'components'
+            $scope.objectTypeLabels =
+                plan: 'Plans'
+                theme: 'Themes'
+                goal: 'Goals'
+                sector: 'Sectors'
+                target: 'Targets'
+                indicator: 'Indicators'
+                component: 'Components'
 
             if _.isEmpty(lookup.search)
                 lookup.search = $location.search()
@@ -68,9 +79,9 @@ angular.module 'dgsDash'
                 $scope.update({}, true)
                 query()
 
-        $scope.object_url = (_type, args) ->
-            if _.has($scope.object_urls, _type) 
-                return "/#{$scope.object_urls[_type]}/#{args.join('/')}"
+        $scope.objectUrl = (_type, args) ->
+            if _.has($scope.objectUrls, _type)
+                return "/#{$scope.objectUrls[_type]}/#{args.join('/')}"
             else
                 return ''
 
@@ -85,9 +96,13 @@ angular.module 'dgsDash'
         $scope.$watch 'lookup.search.q', (newValue, oldValue) ->
             if newValue
                 if newValue.length > 3 or newValue.length is 0
-                    query()
+                    delete lookup.search.page
                     $location.search(lookup.search)
+                    query()
         , true
+
+        $scope.$on '$locationChangeStart', (event) ->
+            lookup.refreshSearch()
 
         init()
         query()
