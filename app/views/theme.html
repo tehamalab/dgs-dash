@@ -11,8 +11,10 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <h4 ng-if="theme.plans_names.length">
-                    <a class="subtitle" ng-href="/"><span class="text-info">{{ theme.plans_names.join(', ') }}</span></a>
+                <h4 ng-if="theme.plan">
+                    <a class="subtitle" ng-href="/plans/{{ plan.id }}/{{ plan.slug }}">
+                        <span class="text-info">{{ theme.plan_name }}</span>
+                    </a>
                 </h4>
                 <h1><strong>{{ theme.name }}</strong></h1>
                 <div ng-if="theme.caption" class="lead text-muted">{{ theme.caption }}</div>

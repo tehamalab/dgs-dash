@@ -8,13 +8,15 @@
  # Controller of the dgsDash
 ###
 angular.module 'dgsDash'
-    .controller 'ThemeCtrl', ($scope, $routeParams, $location, $rootScope, $q, lookup, theme, sector, indicator) ->
+    .controller 'ThemeCtrl', ($scope, $routeParams, $location, $rootScope, $q, lookup, theme, plan, sector, indicator) ->
         lookup.refresh()
         $scope.loading = true
 
         themeq = theme.query id: $routeParams.id, (data) ->
             $scope.theme = data
             $rootScope.title = "#{$rootScope.settings.SITE_NAME} • #{$scope.theme.name}"
+            plan.query id: $scope.theme.plan_id, (data) ->
+                $scope.plan = data
 
         sectorsq = sector.query themes: $routeParams.id, (data) ->
             $scope.sectors = data
