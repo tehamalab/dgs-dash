@@ -160,6 +160,7 @@ a:focus {
     display: block;
     min-height: 150px;
     padding-top: 20px;
+    padding-bottom: 10px;
     border-bottom: 1px solid $panel-default-border;
 
     &.themed {
@@ -174,8 +175,7 @@ a:focus {
 
 .page-header-img{}
 
-.page-info{
-    padding-bottom: 20px;
+.page-info {
     margin-bottom: 10px;
 }
 

@@ -1,5 +1,7 @@
 
-<div class="page-header-dg themed" style="background: {{ goal.extras.color_primary }}">
+<div class="page-header-dg"
+        ng-class="{themed: color.primary}"
+        style="background: {{ goal.extras.color_primary }}">
     <div class="container">
         <div class="row">
             <div class="col-sm-2 text-center">
@@ -8,11 +10,33 @@
             </div>
             <div class="col-sm-8">
                 <h4>
-                    <a class="subtitle" ng-href="/">{{ indicator.plan_name }}</a>
+                    <a class="subtitle" ng-href="/plans/{{ plan.id }}/{{ plan.slug }}">{{ indicator.plan_name }}</a>
                 </h4>
                 <h1>
                     {{ indicator.name }}
                 </h1>
+                <div ng-if="sector.name">
+                    <strong translate>
+                        Sector
+                    </strong>:
+                    <a class="text-muted"
+                            ng-href="/sectors/{{ rootSector.id }}/{{ rootSector.slug }}"
+                            ng-if="rootSector.id">
+                        <strong class="text-info">{{ rootSector.name }}</strong> •
+                    </a>
+                    <a class="text-success" ng-href="/sectors/{{ sector.id }}/{{ sector.slug }}">
+                        <strong>{{ sector.name }}</strong>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-2" ng-if="goal.image_small">
+                <a ng-href="/goals/{{ goal.id }}/{{ goal.slug }}">
+                    <img class="sdg-img" ng-src="{{ goal.image_medium }}">
+                </a>
+            </div>
+            <div class="col-sm-2 text-center" ng-if="!goal.image_small">
+                <strong class="text-uppercase" ng-if="indicator.goal_code" translate>Goal No</strong>
+                <a ng-href="/goals/{{ goal.id }}/{{ goal.slug }}"><h2 style="color: {{ goal.extras.color_primary }}">{{ indicator.goal_code }}</h2></a>
             </div>
         </div>
     </div>
@@ -36,7 +60,7 @@
 
                     <div ng-repeat="_indicator in indicators.results"
                             ng-class="{active: indicator.id == _indicator.id}"
-                            style="border-left-color: {{ goal.extras.color_primary }}"
+                            style="border-left-color: {{ goal.extras.color_primary || 'green' }}"
                             class="pane-li" >
                         <div class="row">
                             <div class="col-xs-2 text-center">
@@ -72,25 +96,47 @@
 
                 <div class="container container-narrow">
 
-                    <div class="panel panel-default panel-widget">
+                    <div class="panel panel-default panel-widget" ng-if="theme.id">
                         <div class="panel-body">
                             <div class="row page-info">
-                                <div class="col-sm-2 text-center" ng-if="goal.image_small">
-                                    <a ng-href="/goals/{{ goal.id }}/{{ goal.slug }}">
-                                        <img class="sdg-img" ng-src="{{ goal.image_small }}">
+                                <div class="col-sm-2 text-center" ng-if="theme.image_small">
+                                    <a ng-href="/themes/{{ theme.id }}/{{ theme.slug }}">
+                                        <img class="sdg-img" ng-src="{{ theme.image_small }}">
                                     </a>
                                 </div>
-                                <div class="col-sm-2 text-center" ng-if="!goal.image_small">
-                                    <strong class="text-uppercase" ng-if="indicator.goal_code" translate>Goal No</strong>
-                                    <a ng-href="/goals/{{ goal.id }}/{{ goal.slug }}"><h2 style="color: {{ goal.extras.color_primary }}">{{ indicator.goal_code }}</h2></a>
+                                <div class="col-sm-2 text-center" ng-if="!theme.image_small">
+                                    <strong class="text-uppercase" ng-if="indicator.theme_code" translate>Theme No</strong>
+                                    <a ng-href="/themes/{{ theme.id }}/{{ theme.slug }}">
+                                        <h2 style="color: {{ theme.extras.color_primary }}">{{ indicator.theme_code }}</h2>
+                                    </a>
                                 </div>
                                 <div class="col-sm-10">
                                     <div class="lead text-muted">
-                                        <a class="" ng-href="/goals/{{ goal.id }}/{{ goal.slug }}"  style="color: {{ goal.extras.color_primary }}">{{ goal.description }}</a>
+                                        <a class="" ng-href="/themes/{{ theme.id }}/{{ theme.slug }}"
+                                                style="color: {{ theme.extras.color_primary }}">
+                                            {{ theme.name }}
+                                        </a>
+                                        <div>{{ theme.caption }}</div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default panel-widget" ng-if="target.id">
+                        <div class="panel-body">
+                            <div class="row page-info">
+                                <div class="col-sm-2 text-center">
+                                    <strong class="text-uppercase" translate>Target No</strong>
+                                    <a ng-href="/targets/{{ target.id }}/{{ target.slug }}">
+                                        <h2 style="color: {{ color.primary }}">{{ target.code }}</h2>
+                                    </a>
+                                </div>
+                                <div class="col-sm-10">
                                     <div>
-                                        <strong style="color: {{ goal.extras.color_primary }}" ng-if="target.description" translate>Target</strong>:
-                                        <a class="text-default" ng-href="/targets/{{ target.id }}/{{ target.slug }}">{{ target.description||'-' }}</a>
+                                        <a class="text-default lead" ng-href="/targets/{{ target.id }}/{{ target.slug }}">
+                                            {{ target.name }}
+                                        </a>
                                     </div>
                                 </div>
                             </div>

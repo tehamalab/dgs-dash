@@ -9,22 +9,52 @@
 ###
 angular.module 'dgsDash'
     .controller 'IndicatorCtrl', ($scope, $routeParams, $location, $rootScope, $q
-                                  lookup, indicator, target, goal, component, progress) ->
+                                  lookup, indicator, target, plan, goal, theme, sector, component, progress) ->
 
         lookup.refresh()
         $scope.loading = true
+        $scope.color = primary: ''
+
+        $scope.SUB_SECTOR = 'sub-sector'
 
         indicatorq = indicator.query id: $routeParams.id, (_indicator) ->
             $scope.indicator = _indicator
             $rootScope.title = "#{$rootScope.settings.SITE_NAME} • #{$scope.indicator.name}"
-            target.query id: $scope.indicator.target, (target) ->
-                $scope.target = target
-            goal.query id: $scope.indicator.goal_id, (goal) ->
-                $scope.goal = goal
-                component._chart.chart.color[0] = $scope.goal.extras.color_primary
-                component._map.color.primary = $scope.goal.extras.color_primary
-            indicator.query goal: $scope.indicator.goal_id, (indicators) ->
-                $scope.indicators = indicators
+            if $scope.indicator.target
+                target.query id: $scope.indicator.target, (target) ->
+                    $scope.target = target
+            if $scope.indicator.goal_id
+                goal.query id: $scope.indicator.goal_id, (goal) ->
+                    $scope.goal = goal
+                    if goal.extras
+                        component._chart.chart.color[0] = $scope.goal.extras.color_primary
+                        component._map.color.primary = $scope.goal.extras.color_primary
+                        $scope.color.primary = $scope.goal.extras.color_primary
+            if $scope.indicator.theme
+                theme.query id: $scope.indicator.theme, (_theme) ->
+                    $scope.theme = _theme
+            if $scope.indicator.sector
+                sector.query id: $scope.indicator.sector, (_sector) ->
+                    $scope.sector = _sector
+            if $scope.indicator.sector_type_code == $scope.SUB_SECTOR and $scope.indicator.root_sector_id
+                sector.query id: $scope.indicator.root_sector_id, (_rootSector) ->
+                    $scope.rootSector = _rootSector
+            if $scope.indicator.plan_id
+                plan.query id: $scope.indicator.plan_id, (_plan) ->
+                    $scope.plan = _plan
+            # get related indicators
+            if $scope.indicator.goal_id
+                indicator.query goal: $scope.indicator.goal_id, (indicators) ->
+                    $scope.indicators = indicators
+            else if $scope.indicator.sector
+                indicator.query sectors_ids: $scope.indicator.sector, (indicators) ->
+                    $scope.indicators = indicators
+            else if $scope.indicator.theme
+                indicator.query theme: $scope.indicator.theme, (indicators) ->
+                    $scope.indicators = indicators
+            else if $scope.indicator.target
+                indicator.query target: $scope.indicator.target, (indicators) ->
+                    $scope.indicators = indicators
 
         componentsq = component.query indicators: $routeParams.id, (data) ->
             $scope.components = data
