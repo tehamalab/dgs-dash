@@ -1,23 +1,22 @@
-<div class="page-header-dg" style="background: {{ goal.extras.color_primary }}">
+<div class="page-header-dg" ng-class="{themed: theme.extras.color_primary }"
+        style="background: {{ theme.extras.color_primary }}">
     <div class="container">
         <div class="row">
             <div ng-if="theme.image_medium" class="col-sm-2 text-center">
                 <img  class="img-responsive" ng-src="{{ theme.image_medium }}">
             </div>
             <div ng-if="!theme.image_medium" class="col-sm-2 text-center">
-                <div class="jumbotron jumbotron-no-pad">
-                    <h3 class="text-uppercase text-muted" translate>Theme</h3>
-                    <h1>{{ theme.code }}</h1>
-                </div>
+                <h3 class="text-uppercase" translate>Theme</h3>
+                <h1>{{ theme.code }}</h1>
             </div>
             <div class="col-md-8">
                 <h4 ng-if="theme.plan">
                     <a class="subtitle" ng-href="/plans/{{ plan.id }}/{{ plan.slug }}">
-                        <span class="text-info">{{ theme.plan_name }}</span>
+                        <strong class="subtitle">{{ theme.plan_name }}</strong>
                     </a>
                 </h4>
                 <h1><strong>{{ theme.name }}</strong></h1>
-                <div ng-if="theme.caption" class="lead text-muted">{{ theme.caption }}</div>
+                <div ng-if="theme.caption" class="lead">{{ theme.caption }}</div>
             </div>
         </div>
     </div>

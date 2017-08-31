@@ -17,6 +17,7 @@ angular.module 'dgsDash'
             $rootScope.title = "#{$rootScope.settings.SITE_NAME} • #{$scope.theme.name}"
             plan.query id: $scope.theme.plan_id, (data) ->
                 $scope.plan = data
+                console.log $scope.plan
 
         sectorsq = sector.query themes: $routeParams.id, (data) ->
             $scope.sectors = data
