@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <h1>
             <img class="inline-block img-h1 transparent" ng-src="/images/flag.png">
-            <span class="text-muted" translate>Tanzania Development Goals</span>
+            <span translate>Tanzania Development Goals</span>
         </h1>
         <h2><span class="text-info" translate>Data Portal</span></h2>
         <div translate>
@@ -70,12 +70,12 @@
                     ng-repeat="plan in plans.results|orderBy:'name'"
                     ng-init="planPath = '/plans/' + plan.id + '/' + plan.slug">
                 <div class="box-plan-header">
-                    <h2 class="text-muted" ng-click="goto(planPath)"><strong>{{ plan.name }}</strong></h2>
+                    <h2 ng-click="goto(planPath)"><strong>{{ plan.name }}</strong></h2>
                 </div>
-                <img class="transparent" ng-click="goto(planPath)" ng-src="{{ plan.image_medium }}">
+                <img ng-click="goto(planPath)" ng-src="{{ plan.image_medium }}">
                 <div class="lead text-italic transparent" ng-click="goto(planPath)"><em>{{ plan.caption }}</em></div>
                 <a class="btn btn-default" ng-href="/plans/{{ plan.id }}/{{ plan.slug }}">
-                    <strong class="text-success text-transparent" translate>View more …</strong>
+                    <strong class="text-warning" translate>View more …</strong>
                 </a>
             </div>
         </div>
@@ -87,7 +87,7 @@
         ng-init="planPath = '/plans/' + plan.id + '/' + plan.slug">
     <div class="container">
         <div class="page-header">
-            <h2 class="text-muted" ng-click="goto(planPath)"><strong>{{ plan.name }}</strong></h2>
+            <h2 ng-click="goto(planPath)"><strong>{{ plan.name }}</strong></h2>
         </div>
 
         <div class="marketing">
