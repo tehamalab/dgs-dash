@@ -63,19 +63,38 @@
                     </form>
 
                     <ul class="nav navbar-nav" ng-if="plans.count <= 3">
+                        <li>
+                            <a ng-href="/">
+                                <i class="fa fa-home text-warning text-transparent"></i>
+                                <strong translate>Home</strong>
+                            </a>
+                        </li>
                         <li ng-repeat="plan in plans.results|orderBy: 'name'">
-                            <a ng-href="/plans/{{ plan.id }}/{{ plan.slug }}"><strong>{{ plan.code }}</strong></a>
+                            <a ng-href="/plans/{{ plan.id }}/{{ plan.slug }}">
+                                <img class="{{ plan.image_small }}"
+                                        ng-if="plan.image_small"
+                                        ng-src="{{ plan.image_small }}">
+                                <strong ng-bind="plan.code"></strong>
+                            </a>
                         </li>
                     </ul>
 
                     <ul class="nav navbar-nav" ng-if="plans.count > 3">
+                        <li>
+                            <a ng-href="/">
+                                <i class="fa fa-home text-warning text-transparent"></i>
+                                <strong translate>Home</strong>
+                            </a>
+                        </li>
                         <li role="presentation" class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button">
                                 <span translate>Development Goals</span> <i class="small fa fa-chevron-right"></i>
                             </a>
                             <ul class="dropdown-menu">
                                 <li ng-repeat="plan in plans.results|orderBy: 'name'">
-                                    <a ng-href="/plans/{{ plan.id }}/{{ plan.slug }}"><strong>{{ plan.code }}</strong></a>
+                                    <a ng-href="/plans/{{ plan.id }}/{{ plan.slug }}">
+                                        <strong ng-bind="plan.code"></strong>
+                                    </a>
                                 </li>
                             </ul>
                         </li>
@@ -84,7 +103,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li role="presentation" class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button">
-                                <i class="fa fa-share-alt"></i> Share
+                                <i class="fa fa-share text-success transparent"></i>
+                                <span translate>Share</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
@@ -99,7 +119,8 @@
                         </li>
                         <li role="presentation" class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button">
-                                <i class="fa fa-ellipsis-v"></i>
+                                <i class="fa fa-ellipsis-v text-info transparent"></i>
+                                <span translate>More</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a ng-href="/#!/data" translate>Data</a></li>

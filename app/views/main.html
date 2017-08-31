@@ -1,11 +1,157 @@
-
-<div class="container">
-
-    <div class="text-center text-muted" ng-if="loading">
-        <i class="fa fa-spin fa-3x fa-spinner"></i>
+<div class="jumbotron jumbotron-no-margin">
+    <div class="container-fluid">
+        <h1>
+            <img class="inline-block img-h1 transparent" ng-src="/images/flag.png">
+            <span class="text-muted" translate>Tanzania Development Goals</span>
+        </h1>
+        <h2><span class="text-info" translate>Data Portal</span></h2>
+        <div translate>
+            <span class="lead text-muted" translate>
+                National statistics related to various development plans
+            </span>
+            <div class="small text-success">
+                <strong>For everyone:</strong> public, journalists, researchers, analysts, planners, software developers …
+            </div>
+        </div>
     </div>
 
-    <div class="row">
-        <div ng-repeat="goal in goals.results" class="col-sm-2 col-no-pad"><a ng-href="/#!/goals/{{ goal.id }}/{{ goal.slug }}"><img ng-src="{{ goal.image_medium }}" class="sdg-img"></a></div>
+    <div class="container container-narrow marketing">
+        <div class="row">
+            <div class="col-xs-2 text-center">
+                <a href="#home-explore-top" target="_self">
+                    <i class="fa fa-2x fa-list-ul text-warning text-transparent"></i>
+                    <div class="text-muted"><strong translate>Explore</strong></div>
+                </a>
+            </div>
+            <div class="col-xs-2 text-center">
+                <a ng-href="/search">
+                    <i class="fa fa-2x fa-search text-warning text-transparent"></i>
+                    <div class="text-muted"><strong translate>Search</strong></div>
+                </a>
+            </div>
+            <div class="col-xs-2 text-center">
+                <a ng-href="">
+                    <i class="fa fa-2x fa-download text-warning text-transparent"></i>
+                    <div class="text-muted"><strong translate>Download</strong></div>
+                </a>
+            </div>
+            <div class="col-xs-2 text-center">
+                <a ng-href="">
+                    <i class="fa fa-2x fa-line-chart text-warning text-transparent"></i>
+                    <div class="text-muted"><strong translate>Visualize</strong></div>
+                </a>
+            </div>
+            <div class="col-xs-2 text-center">
+                <a ng-href="">
+                    <i class="fa fa-2x fa-share text-warning text-transparent"></i>
+                    <div class="text-muted"><strong translate>Share</strong></div>
+                </a>
+            </div>
+            <div class="col-xs-2 text-center">
+                <a ng-href="">
+                    <i class="fa fa-2x fa-ellipsis-h text-warning text-transparent"></i>
+                    <div class="text-muted"><strong translate>+More</strong></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="home-explore-top"></div>
+</div>
+
+<div id="home-explore" class="jumbotron jumbotron-no-margin" style="background: white;">
+    <div class="container">
+
+        <div class="text-center text-muted" ng-if="loading">
+            <i class="fa fa-spin fa-3x fa-spinner"></i>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6"
+                    ng-repeat="plan in plans.results|orderBy:'name'"
+                    ng-init="planPath = '/plans/' + plan.id + '/' + plan.slug">
+                <div class="box-plan-header">
+                    <h2 class="text-muted" ng-click="goto(planPath)"><strong>{{ plan.name }}</strong></h2>
+                </div>
+                <img class="transparent" ng-click="goto(planPath)" ng-src="{{ plan.image_medium }}">
+                <div class="lead text-italic transparent" ng-click="goto(planPath)"><em>{{ plan.caption }}</em></div>
+                <a class="btn btn-default" ng-href="/plans/{{ plan.id }}/{{ plan.slug }}">
+                    <strong class="text-success text-transparent" translate>View more …</strong>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="jumbotron jumbotron-no-margin jumbotron-stripped-light"
+        ng-repeat="plan in plans.results|orderBy:'name'"
+        ng-init="planPath = '/plans/' + plan.id + '/' + plan.slug">
+    <div class="container">
+        <div class="page-header">
+            <h2 class="text-muted" ng-click="goto(planPath)"><strong>{{ plan.name }}</strong></h2>
+        </div>
+
+        <div class="marketing">
+            <div class="d-inline-block btn-circle btn-default btn-spaced"
+                    ng-if="plan.extras.themes_count"
+                    ng-click="goto(planPath)">
+                <div class="text-info text-large text-transparent"><strong>{{ plan.extras.themes_count }}</strong></div>
+                <div class="text-uppercase text-transparent"><strong translate>Themes</strong></div>
+            </div>
+
+
+            <div class="d-inline-block btn-circle btn-default btn-spaced"
+                    ng-if="plan.extras.goals_count"
+                    ng-click="goto(planPath)">
+                <div class="text-info text-large text-transparent"><strong>{{ plan.extras.goals_count }}</strong></div>
+                <div class="text-uppercase text-transparent"><strong translate>Goals</strong></div>
+            </div>
+
+            <div class="d-inline-block btn-circle btn-default btn-spaced"
+                    ng-if="plan.extras.sectors_count"
+                    ng-click="goto(planPath)">
+                <div class="text-warning text-large text-transparent"><strong>{{ plan.extras.sectors_count }}</strong></div>
+                <div class="text-uppercase text-transparent"><strong translate>Sectors</strong></div>
+            </div>
+
+            <div class="d-inline-block btn-circle btn-default btn-spaced"
+                    ng-if="plan.extras.subsectors_count"
+                    ng-click="goto(planPath)">
+                <div class="text-warning text-large text-transparent"><strong>{{ plan.extras.subsectors_count }}</strong></div>
+                <div class="text-uppercase text-transparent"><strong translate>Sub sectors</strong></div>
+            </div>
+
+            <div class="d-inline-block btn-circle btn-default btn-spaced"
+                    ng-if="plan.extras.targets_count"
+                    ng-click="goto(planPath)">
+                <div class="text-warning text-large text-transparent"><strong>{{ plan.extras.targets_count }}</strong></div>
+                <div class="text-uppercase text-transparent"><strong translate>Targets</strong></div>
+            </div>
+
+            <div class="d-inline-block btn-circle btn-default btn-spaced"
+                    ng-if="plan.extras.indicators_count"
+                    ng-click="goto(planPath)">
+                <div class="text-warning text-large text-transparent"><strong>{{ plan.extras.indicators_count }}</strong></div>
+                <div class="text-uppercase text-transparent"><strong translate>Indicators</strong></div>
+            </div>
+        </div>
+
+        <div class="row" ng-if="plan.themes.length">
+            <div ng-repeat="theme in plan.themes" class="col-sm-3 col-no-pad goal-box">
+                <a class="goal-box-container"  style="background: {{ theme.extras.color_primary }}"
+                        ng-href="/themes/{{ theme.id }}/{{ theme.slug }}">
+                    <div class="goal-box-body">
+                        <h1 class="text-transparent text-center" ng-if="theme.code">
+                            <strong>{{ theme.code }}</strong>
+                        </h1>
+                        <h3 class="text-center"><strong>{{ theme.name }}</strong></h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="row" ng-if="plan.goals.length">
+            <div ng-repeat="goal in plan.goals" class="col-sm-2 col-no-pad"><a ng-href="/#!/goals/{{ goal.id }}/{{ goal.slug }}"><img ng-src="{{ goal.image_medium }}" class="sdg-img"></a></div>
+        </div>
+
     </div>
 </div>

@@ -12,6 +12,8 @@ $font-family-base:        $font-family-sans-serif;
 
 $text-color:              #333;
 
+$btn-default-border:      #E0E0E0;
+
 $navbar-height:            80px;
 
 $navbar-default-bg:        #fff;
@@ -50,8 +52,26 @@ a:hover,
 a:focus {
     text-decoration: none;
 }
+
+.d-inline-block{
+    display: inline-block;
+}
+
+.transparent {
+    opacity: 0.7;
+}
+
+.fa-bg{
+    color: lighten($gray-base, 60%);
+}
+
 .navbar-nav > li > a {
     font-weight: 500;
+
+    img {
+        max-height: $line-height-computed - 2px;
+        vertical-align: top;
+    }
 }
 
 .navbar-brand  {
@@ -94,20 +114,53 @@ a:focus {
 }
 
 .jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
 
-  .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-  }
+    .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+    }
+
+    .img-h1 {
+        height: $jumbotron-heading-font-size;
+        padding: ($headings-line-height - 1) * $jumbotron-heading-font-size;
+        vertical-align: top;
+    }
+
+    &.jumbotron-no-pad {
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    &.jumbotron-no-margin {
+        margin: 0;
+        border-bottom: 1px solid $panel-default-border;
+    }
 }
 
-.jumbotron.jumbotron-no-pad {
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 15px;
-    padding-bottom: 15px;
+
+.jumbotron-stripped-light:nth-child(4n-1){
+    background-color: #EDF4EF;
+
+    .page-header {
+        border-bottom-color: darken(#EDF4EF, 5%);
+    }
+}
+.jumbotron-stripped-light:nth-child(4n+0){
+    background-color: $body-bg;
+}
+.jumbotron-stripped-light:nth-child(4n+1){
+    background-color: #f6f6eb;
+
+    .page-header {
+        border-bottom-color: darken(#f6f6eb, 5%);
+    }
+}
+.jumbotron-stripped-light:nth-child(4n+2){
+    background-color: $body-bg;
 }
 
 .well{
@@ -116,11 +169,7 @@ a:focus {
 
 /* Supporting marketing content */
 .marketing {
-  margin: 40px 0;
-
-  p + h4 {
-    margin-top: 28px;
-  }
+  margin-top: 30px;
 }
 
 .row .col-no-pad{
@@ -216,16 +265,25 @@ a:focus {
    padding-left: 5px;
    padding-right: 5px;
 }
+
+.box-plan-header {
+    min-height: $font-size-h2 * $headings-line-height * 2
+}
+
 .goal-box {
     min-height: 200px;
 }
 
 .goal-box-container {
     display: table;
-    width: 99%;
+    width: 100.4%;
     height: 250px;
     background: #222;
-    margin: auto;
+    border: none;
+    margin: 0;
+    box-sizing: content-box;
+    text-rendering: optimizeLegibility;
+    letter-spacing: 0.1em;
     a {
         color: $body-bg;
     }
@@ -262,8 +320,26 @@ a.goal-box-container {
     font-weight: 600;
 }
 
-.btn.btn-spaced {
+.text-large{
+    font-size: 200%;
+}
+.btn-default {
+    &:focus,
+    &:active,
+    &:hover {
+        background-color: darken($body-bg, 1%);
+        border-color: $btn-default-border;
+    }
+}
+
+.btn-spaced {
     margin: 5px;
+}
+
+.btn-circle {
+    border-radius: 50%;
+    padding: 15px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 .table-scrollable tbody {
