@@ -33,6 +33,10 @@ angular.module 'dgsDash'
             if $scope.indicator.theme
                 theme.query id: $scope.indicator.theme, (_theme) ->
                     $scope.theme = _theme
+                    if not $scope.color.primary and $scope.theme.extras.color_primary
+                        $scope.color.primary = $scope.theme.extras.color_primary
+                        component._chart.chart.color[0] = $scope.theme.extras.color_primary
+                        component._map.color.primary = $scope.theme.extras.color_primary
             if $scope.indicator.sector
                 sector.query id: $scope.indicator.sector, (_sector) ->
                     $scope.sector = _sector

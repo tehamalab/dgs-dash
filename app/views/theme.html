@@ -25,7 +25,7 @@
 <div class="container-fluid">
 
     <div class="text-center text-muted" ng-if="loading">
-        <i style="color: {{ goal.extras.color_primary || 'inherit' }}" class="fa fa-spin fa-3x fa-spinner"></i>
+        <i style="color: {{ theme.extras.color_primary || 'inherit' }}" class="fa fa-spin fa-3x fa-spinner"></i>
     </div>
 
     <div class="row">
@@ -33,7 +33,7 @@
             <div>
                 <div>
                     <div class="page-header">
-                        <h4 class="text-center text-uppercase" style="color: {{ goal.extras.color_primary }}" translate>
+                        <h4 class="text-center text-uppercase" style="color: {{ theme.extras.color_primary }}" translate>
                             Sectors
                         </h4>
                     </div>
@@ -41,7 +41,7 @@
                     <div ng-repeat="sector in sectors.results" class="pane-li">
                         <div class="row">
                             <div class="col-xs-2 col-xs-offset-{{ sector.level }} text-center">
-                                <a style="color:{{ goal.extras.color_primary }}"
+                                <a style="color:{{ theme.extras.color_primary }}"
                                         ng-href="/sectors/{{ sector.id }}/{{ sector.slug }}">
                                     <strong>{{ sector.code }}</strong>
                                 </a>
@@ -75,7 +75,7 @@
                                         <div class="row">
                                             <div class="col-sm-4 text-center">
                                                 <strong class="text-uppercase" translate>Indictor</strong>
-                                                <h3 style="color: {{ goal.extras.color_primary }}">{{ indicator.code }}</h3>
+                                                <h3 style="color: {{ theme.extras.color_primary }}">{{ indicator.code }}</h3>
                                             </div>
                                             <div class="col-sm-8">
                                                 <div>{{ indicator.name|truncatechars:100 }}</div>
@@ -97,7 +97,7 @@
                                                 </div>
                                             </div>
                                             <div class="text-center chart-single-value col-xs-6">
-                                                <h1 style="color: {{ goal.extras.color_primary }}">
+                                                <h1 style="color: {{ theme.extras.color_primary }}">
                                                     {{ indicator.progress_preview[0].value|shortnumber }}
                                                 </h1>
                                                 <strong ng-if="indicator.progress_preview[0].extras.value_unit" class="subtitle">
@@ -123,7 +123,7 @@
                                     </span>
                                     <a class="btn btn-default btn-sm"
                                             ng-href="/indicators/{{ indicator.id }}/{{ indicator.slug }}"
-                                            style="color: {{ goal.extras.color_primary }}">
+                                            style="color: {{ theme.extras.color_primary }}">
                                         <i class="fa fa-line-chart"></i>
                                         <translate>View more</translate>
                                     </a>

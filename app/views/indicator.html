@@ -1,7 +1,7 @@
 
 <div class="page-header-dg"
         ng-class="{themed: color.primary}"
-        style="background: {{ goal.extras.color_primary }}">
+        style="background: {{ color.primary }}">
     <div class="container">
         <div class="row">
             <div class="col-sm-2 text-center">
@@ -10,22 +10,24 @@
             </div>
             <div class="col-sm-8">
                 <h4>
-                    <a class="subtitle" ng-href="/plans/{{ plan.id }}/{{ plan.slug }}">{{ indicator.plan_name }}</a>
+                    <a class="subtitle" ng-href="/plans/{{ plan.id }}/{{ plan.slug }}">
+                        <strong>{{ indicator.plan_name }}</strong>
+                    </a>
                 </h4>
                 <h1>
                     {{ indicator.name }}
                 </h1>
-                <div ng-if="sector.name">
+                <div ng-if="sector.name" class="lead">
                     <strong translate>
                         Sector
                     </strong>:
-                    <a class="text-muted"
+                    <a class=""
                             ng-href="/sectors/{{ rootSector.id }}/{{ rootSector.slug }}"
                             ng-if="rootSector.id">
-                        <strong class="text-info">{{ rootSector.name }}</strong> •
+                        {{ rootSector.name }} •
                     </a>
-                    <a class="text-success" ng-href="/sectors/{{ sector.id }}/{{ sector.slug }}">
-                        <strong>{{ sector.name }}</strong>
+                    <a class="" ng-href="/sectors/{{ sector.id }}/{{ sector.slug }}">
+                        {{ sector.name }}
                     </a>
                 </div>
             </div>
@@ -36,7 +38,7 @@
             </div>
             <div class="col-sm-2 text-center" ng-if="!goal.image_small">
                 <strong class="text-uppercase" ng-if="indicator.goal_code" translate>Goal No</strong>
-                <a ng-href="/goals/{{ goal.id }}/{{ goal.slug }}"><h2 style="color: {{ goal.extras.color_primary }}">{{ indicator.goal_code }}</h2></a>
+                <a ng-href="/goals/{{ goal.id }}/{{ goal.slug }}"><h2 style="color: {{ color.primary }}">{{ indicator.goal_code }}</h2></a>
             </div>
         </div>
     </div>
@@ -45,7 +47,7 @@
 <div class="container-fluid">
 
     <div class="text-center text-muted" ng-if="loading">
-        <i style="color: {{ goal.extras.color_primary || 'inherit' }}" class="fa fa-spin fa-3x fa-spinner"></i>
+        <i style="color: {{ color.primary || 'inherit' }}" class="fa fa-spin fa-3x fa-spinner"></i>
     </div>
 
     <div class="row">
@@ -53,18 +55,18 @@
             <div>
                 <div>
                     <div class="page-header">
-                        <h4 class="text-center text-uppercase" style="color: {{ goal.extras.color_primary }}" translate>
+                        <h4 class="text-center text-uppercase" style="color: {{ color.primary }}" translate>
                             Related indicators
                         </h4>
                     </div>
 
                     <div ng-repeat="_indicator in indicators.results"
                             ng-class="{active: indicator.id == _indicator.id}"
-                            style="border-left-color: {{ goal.extras.color_primary || 'green' }}"
+                            style="border-left-color: {{ color.primary || 'green' }}"
                             class="pane-li" >
                         <div class="row">
                             <div class="col-xs-2 text-center">
-                                <a style="color:{{ goal.extras.color_primary }}"
+                                <a style="color:{{ color.primary }}"
                                         ng-href="/indicators/{{ _indicator.id }}/{{ _indicator.slug }}">
                                     <strong>{{ _indicator.code }}</strong>
                                 </a>
@@ -81,7 +83,7 @@
                             </span>
                             <a class="btn btn-default btn-xs"
                                     ng-href="/indicators/{{ _indicator.id }}/{{ _indicator.slug }}"
-                                    style="color: {{ goal.extras.color_primary }}">
+                                    style="color: {{ color.primary }}">
                                 <i class="fa fa-line-chart"></i>
                                     <translate>View</translate>
                             </a>
@@ -159,7 +161,7 @@
                                     </nvd3>
                                     <div ng-if="chart.hasOneValue" class="text-center chart-single-value jumbotron">
                                         <div><strong class="text-muted">{{ chart.data[0].values[0].area_name }}</strong></div>
-                                        <h1 style="color: {{ goal.extras.color_primary }}">
+                                        <h1 style="color: {{ color.primary }}">
                                             {{ chart.data[0].values[0].value|number }}
                                         </h1>
                                         <h3 ng-if="component.value_unit" class="subtitle">{{ component.value_unit }}</h3>

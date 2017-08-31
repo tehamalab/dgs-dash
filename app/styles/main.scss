@@ -215,9 +215,14 @@ a:focus {
     &.themed {
         color: #FFF;
         padding-bottom: 20px;
+
+        a {
+            color: #FFF;
+        }
     }
 }
 
+.page-header-dg a.subtitle,
 .page-header-dg .subtitle {
     color: rgba(0, 0, 0, 0.5);
 }
