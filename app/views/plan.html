@@ -21,10 +21,46 @@
             <i class="fa fa-spin fa-3x fa-spinner"></i>
         </div>
 
+        <div class="text-center">
+            <div class="d-inline-block btn-circle btn-default btn-spaced"
+                    ng-if="plan.extras.themes_count">
+                <div class="text-info text-large text-transparent"><strong>{{ plan.extras.themes_count }}</strong></div>
+                <div class="text-uppercase text-transparent"><strong translate>Themes</strong></div>
+            </div>
+
+
+            <div class="d-inline-block btn-circle btn-default btn-spaced"
+                    ng-if="plan.extras.goals_count">
+                <div class="text-info text-large text-transparent"><strong>{{ plan.extras.goals_count }}</strong></div>
+                <div class="text-uppercase text-transparent"><strong translate>Goals</strong></div>
+            </div>
+
+            <div class="d-inline-block btn-circle btn-default btn-spaced"
+                    ng-if="plan.extras.sectors_count">
+                <div class="text-warning text-large text-transparent"><strong>{{ plan.extras.sectors_count }}</strong></div>
+                <div class="text-uppercase text-transparent"><strong translate>Sectors</strong></div>
+            </div>
+
+            <div class="d-inline-block btn-circle btn-default btn-spaced"
+                    ng-if="plan.extras.subsectors_count">
+                <div class="text-warning text-large text-transparent"><strong>{{ plan.extras.subsectors_count }}</strong></div>
+                <div class="text-uppercase text-transparent"><strong translate>Sub sectors</strong></div>
+            </div>
+
+            <div class="d-inline-block btn-circle btn-default btn-spaced"
+                    ng-if="plan.extras.targets_count">
+                <div class="text-warning text-large text-transparent"><strong>{{ plan.extras.targets_count }}</strong></div>
+                <div class="text-uppercase text-transparent"><strong translate>Targets</strong></div>
+            </div>
+
+            <div class="d-inline-block btn-circle btn-default btn-spaced"
+                    ng-if="plan.extras.indicators_count">
+                <div class="text-warning text-large text-transparent"><strong>{{ plan.extras.indicators_count }}</strong></div>
+                <div class="text-uppercase text-transparent"><strong translate>Indicators</strong></div>
+            </div>
+        </div>
+
         <div ng-if="themes.results.length">
-            <h2 class="text-center text-muted">
-                <strong translate>{{ themes.count }} Themes</strong>
-            </h2>
             <div class="row">
                 <div ng-repeat="theme in themes.results" class="col-sm-3 col-no-pad goal-box">
                     <a class="goal-box-container"   style="background: {{ theme.extras.color_primary }}"
@@ -41,9 +77,6 @@
         </div>
 
         <div ng-if="goals.results.length">
-            <h2 class="text-center text-muted">
-                <strong translate>{{ goals.count }} Goals</strong>
-            </h2>
             <div class="row">
                 <div ng-repeat="goal in goals.results" class="col-sm-2 col-no-pad"><a ng-href="/goals/{{ goal.id }}/{{ goal.slug }}"><img ng-src="{{ goal.image_medium }}" class="sdg-img"></a></div>
             </div>
