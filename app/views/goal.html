@@ -14,8 +14,8 @@
 
 <div class="container-fluid">
 
-    <div class="text-center text-muted" ng-if="loading">
-        <i style="color: {{ goal.extras.color_primary || 'inherit' }}" class="fa fa-spin fa-3x fa-spinner"></i>
+    <div class="text-center text-muted loading-spinner" ng-if="loading">
+        <i style="color: {{ goal.extras.color_primary || 'inherit' }}" class="fa fa-spin fa-3x fa-spinner spinner"></i>
     </div>
 
     <div class="row">
@@ -48,7 +48,7 @@
             </div>
         </div>
 
-        <div class="col-sm-9 col-no-pad" ng-if="indicators.results">
+        <div class="col-sm-9 col-no-pad pane-main" ng-if="indicators.results">
             <div class="container-wrapper">
                 <div class="container-fluid">
                     <div class="">

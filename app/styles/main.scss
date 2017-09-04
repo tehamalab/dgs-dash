@@ -387,6 +387,7 @@ a.goal-box-container {
 .pane-left{
     border-right: 1px solid $panel-default-border;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    margin-right: -1px;
 
     .page-header{
         margin-bottom: 1px;
@@ -400,6 +401,17 @@ a.goal-box-container {
 .pane-li.active{
     border-left: 5px solid transparent;
     background: $container-wrapper-bg;
+}
+
+.loading-spinner {
+    position: absolute;
+    left: 50%;
+    z-index: 20;
+
+    .spinner {
+        position: relative;
+        left: -50%;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -421,6 +433,10 @@ a.goal-box-container {
 
     .jumbotron {
         border-bottom: 0;
+    }
+    .pane-main{
+        border-left: 1px solid $panel-default-border;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
     }
 }
 

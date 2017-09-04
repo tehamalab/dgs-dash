@@ -19,17 +19,17 @@
 
 <div class="container-fluid">
 
-    <div class="text-center text-muted" ng-if="loading">
-        <i style="color: {{ goal.extras.color_primary || 'inherit' }}" class="fa fa-spin fa-3x fa-spinner"></i>
+    <div class="text-center text-muted loading-spinner" ng-if="loading">
+        <i style="color: {{ goal.extras.color_primary || 'inherit' }}" class="fa fa-spin fa-3x fa-spinner spinner"></i>
     </div>
 
     <div class="row">
-        <div ng-if="sectors.results" class="col-sm-3 col-no-pad pane-left">
+        <div class="col-sm-3 col-no-pad pane-left">
             <div>
-                <div>
+                <div ng-if="sectors.results" >
                     <div class="page-header">
                         <h4 class="text-center text-uppercase" style="color: {{ goal.extras.color_primary }}" translate>
-                            Sectors
+                            Some related Rectors
                         </h4>
                     </div>
 
@@ -55,7 +55,7 @@
             </div>
         </div>
 
-        <div class="col-sm-9 col-no-pad" ng-if="indicators.results">
+        <div class="col-sm-9 col-no-pad pane-main" ng-if="indicators.results">
             <div class="container-wrapper">
                 <div class="container-fluid">
                     <div class="">
