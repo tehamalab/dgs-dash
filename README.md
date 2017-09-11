@@ -9,7 +9,8 @@ This is a client-side application built using [AngulatJS](https://angularjs.org/
 
 ## Installation
 
-Building the source code requires `NodeJs`, `npm`, `bower`, `grunt` and `compass` as dependancies
+Building the source code requires `NodeJs`, `npm`, `bower`, `grunt` and `compass` as dependancies.
+You may also want to install [yeoman](https://github.com/yeoman/generator-angular) in order to simplify scaffolding during development.
 
 To use the source code for development install the above global dependencies;
 
@@ -57,8 +58,3 @@ For example for Nginx you can have a site configuration file similar to
             try_files      $uri$args $uri$args/ $uri  /index.html;
         }
     }
-
-## Scaffolding
-
-This project was generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.16.0.
