@@ -21,7 +21,7 @@ angular.module 'dgsDash'
             $scope.plans = data
 
         $scope.search = ->
-            $location.url('/search')
+            $location.url('/search').search(lookup.search)
 
         $scope.$watch 'lookup.search.q', (newValue, oldValue) ->
             if newValue

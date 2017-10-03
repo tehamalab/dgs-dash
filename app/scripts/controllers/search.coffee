@@ -94,11 +94,11 @@ angular.module 'dgsDash'
             return $scope.data? and $scope.data.results? and lookup.search.page? and lookup.search.page > 1
 
         $scope.$watch 'lookup.search.q', (newValue, oldValue) ->
-            if newValue
-                if newValue.length > 3 or newValue.length is 0
-                    delete lookup.search.page
-                    $location.search(lookup.search)
-                    query()
+            if (newValue and newValue.length >= 3) or newValue.length is 0
+                delete lookup.search.page
+                $location.search(lookup.search)
+                console.log search
+                query()
         , true
 
         $scope.$on '$locationChangeStart', (event) ->
