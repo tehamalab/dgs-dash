@@ -24,9 +24,11 @@ angular.module 'dgsDash'
                 x: (d) -> d.year
                 y: (d) -> d.value
                 showValues: true
+                showLabels: true
                 showControls: false
                 focusEnable: false
                 showLegend: true
+                reduceXTicks: false
                 xAxis:
                     axisLabel: 'Year'
                     rotateLabels: 30
@@ -99,6 +101,7 @@ angular.module 'dgsDash'
                         chart.options.chart.xAxis =
                             axisLabel: 'Region'
                             rotateLabels: 30
+
                         cdata.values = _.sortBy cdata.values, 'area_name'
                         if _years.length is 1
                             chart.title = "#{chart.title} year #{_years[0]}"
