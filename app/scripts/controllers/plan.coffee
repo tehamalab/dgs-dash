@@ -8,10 +8,11 @@
  # Controller of the dgsDash
 ###
 angular.module 'dgsDash'
-    .controller 'PlanCtrl', ($scope, $rootScope, $routeParams, $q, lookup, plan, goal, theme) ->
+    .controller 'PlanCtrl', ($scope, $rootScope, $routeParams, $q, page, lookup, plan, goal, theme) ->
         lookup.refresh()
         $scope.loading = true
         $scope.plan_code = 'sdgs'
+        page.current.plan_id = $routeParams.id
 
         planq = plan.query id: $routeParams.id, (data) ->
             $scope.plan = data

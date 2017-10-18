@@ -8,13 +8,14 @@
  # Controller of the dgsDash
 ###
 angular.module 'dgsDash'
-    .controller 'GoalCtrl', ($scope, $routeParams, $location, $rootScope, $q, lookup, goal, target, indicator) ->
+    .controller 'GoalCtrl', ($scope, $routeParams, $location, $rootScope, $q, lookup, goal, target, indicator, page) ->
         lookup.refresh()
         $scope.loading = true
 
-        goalsq = goal.query id: $routeParams.id, (data) ->
+        goalq = goal.query id: $routeParams.id, (data) ->
             $scope.goal = data
             $rootScope.title = "#{$rootScope.settings.SITE_NAME} • #{$scope.goal.name}"
+            page.current.plan_id = $scope.goal.plan_id
 
         indicatorsq = indicator.query goal: $routeParams.id, (data) ->
             $scope.indicators = data
@@ -23,7 +24,7 @@ angular.module 'dgsDash'
             $scope.targets = data
 
         $q.all([
-            goalsq.$promise
+            goalq.$promise
             indicatorsq.$promise
             targetsq.$promise
         ]).then ->

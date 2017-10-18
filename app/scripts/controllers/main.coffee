@@ -8,11 +8,12 @@
  # Controller of the dgsDash
 ###
 angular.module 'dgsDash'
-    .controller 'MainCtrl', ($scope, $rootScope, $location, $q, lookup, plan, theme, goal) ->
+    .controller 'MainCtrl', ($scope, $rootScope, $location, $q, page, lookup, plan, theme, goal) ->
         
         lookup.refresh()
         $rootScope.title = "#{$rootScope.settings.SITE_NAME}"
         $scope.loading = true
+        page.current.plan_id = null
 
         plansq = plan.query {}, (data) ->
             $scope.plans = data

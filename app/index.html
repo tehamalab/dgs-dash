@@ -27,15 +27,29 @@
         <!-- Add your site or application content here -->
         <div class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="NavCtrl">
             <div class="nav-goals-strip">
-                <a ng-repeat='_goal in goals.results'
-                        ng-href="/#!/goals/{{ _goal.id }}/{{ _goal.slug }}"
+                <a ng-repeat='_theme in current.themes.results'
+                        ng-href="/themes/{{ _theme.id }}/{{ _theme.slug }}"
+                        ng-mouseenter="themeHovered = _theme.id"
+                        ng-mouseleave="themeHovered = null"
+                        ng-class="{hovered: _theme.id == themeHovered}"
+                        data-toggle="tooltip" title="{{ _theme.name }}"
+                        class="nav-goals-strip-item"
+                        style="
+                            background: {{ _theme.extras.color_primary||'#fff' }};
+                            width: {{ 100/(current.goals.results.length + current.themes.results.length) - 0.02 }}%">
+                    <img ng-if="_theme.image_small" ng-show="_theme.id == themeHovered" ng-src="{{ _theme.image_small }}">
+                </a><!-- Fighting space, hack: https://css-tricks.com/fighting-the-space-between-inline-block-elements/
+                --><a ng-repeat='_goal in current.goals.results'
+                        ng-href="/goals/{{ _goal.id }}/{{ _goal.slug }}"
                         ng-mouseenter="goalHovered = _goal.id"
                         ng-mouseleave="goalHovered = null"
                         ng-class="{hovered: _goal.id == goalHovered}"
                         data-toggle="tooltip" title="{{ _goal.name }}"
                         class="nav-goals-strip-item"
-                        style="background: {{ _goal.extras.color_primary||'#fff' }}">
-                    <img ng-show="_goal.id == goalHovered" ng-src="{{ _goal.image_small }}">
+                        style="
+                            background: {{ _goal.extras.color_primary||'#fff' }};
+                            width: {{ 100/(current.goals.results.length + current.themes.results.length) - 0.02 }}%">
+                    <img ng-if="_goal.image_small" ng-show="_goal.id == goalHovered" ng-src="{{ _goal.image_small }}">
                 </a>
             </div>
             <div class="container">
@@ -210,6 +224,7 @@
             <script src="scripts/controllers/theme.js"></script>
             <script src="scripts/services/sector.js"></script>
             <script src="scripts/controllers/sector.js"></script>
+            <script src="scripts/services/page.js"></script>
             <!-- endbuild -->
         </body>
 </html>

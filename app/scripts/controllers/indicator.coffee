@@ -8,7 +8,7 @@
  # Controller of the dgsDash
 ###
 angular.module 'dgsDash'
-    .controller 'IndicatorCtrl', ($scope, $routeParams, $location, $rootScope, $q
+    .controller 'IndicatorCtrl', ($scope, $routeParams, $location, $rootScope, $q, page,
                                   lookup, indicator, target, plan, goal, theme, sector, component, progress) ->
 
         lookup.refresh()
@@ -44,6 +44,7 @@ angular.module 'dgsDash'
                 sector.query id: $scope.indicator.root_sector_id, (_rootSector) ->
                     $scope.rootSector = _rootSector
             if $scope.indicator.plan_id
+                page.current.plan_id = $scope.indicator.plan_id
                 plan.query id: $scope.indicator.plan_id, (_plan) ->
                     $scope.plan = _plan
             # get related indicators

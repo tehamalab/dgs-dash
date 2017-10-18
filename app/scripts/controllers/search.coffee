@@ -9,9 +9,10 @@
 ###
 
 angular.module 'dgsDash'
-    .controller 'SearchCtrl', ($scope, $routeParams, $location, $rootScope, search, lookup) ->
+    .controller 'SearchCtrl', ($scope, $routeParams, $location, $rootScope, page, search, lookup) ->
 
         init = ->
+            page.current.plan_id = null
             $scope.lookup = lookup
             $scope.data = {}
             $scope.facets = {}
@@ -94,7 +95,7 @@ angular.module 'dgsDash'
             return $scope.data? and $scope.data.results? and lookup.search.page? and lookup.search.page > 1
 
         $scope.$watch 'lookup.search.q', (newValue, oldValue) ->
-            if (newValue and newValue.length >= 3) or newValue.length is 0
+            if (newValue and newValue.length >= 3) or newValue is ''
                 delete lookup.search.page
                 $location.search(lookup.search)
                 console.log search
