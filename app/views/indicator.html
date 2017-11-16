@@ -154,6 +154,9 @@
                                             <strong>{{ chart.title }}</strong>
                                         </a>
                                     </h2>
+                                    <h3 ng-if="component.value_unit" class="subtitle text-center text-info" style="color: {{ color.primary }}">
+                                        ({{ component.value_unit }})
+                                    </h3>
                                 </div>
                                 <div class="container-fluid">
                                     <nvd3 ng-if="!chart.hasOneValue" options="chart.options"
