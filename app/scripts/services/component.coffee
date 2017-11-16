@@ -78,15 +78,22 @@ angular.module 'dgsDash'
                     options: angular.copy(@_chart)
                     title: component.name
                     hasOneValue: false
+                chart.options.chart.yDomain1 = [0, _max.value]
+                if _min.value < 0
+                    chart.options.chart.yDomain1[0] = _min.value
                 if component.value_unit is 'percent'
-                    if _max.value <= 50
-                        chart.options.chart.yDomain1 = [0, Math.ceil((_max.value + (0.4 * _max.value)) / 10) * 10]
+                    if _max.value <= 1
+                        chart.options.chart.yDomain1[1] = _max.value + 0.1
+                    else if _max.value <= 10
+                        chart.options.chart.yDomain1[1] = 10
+                    else if _max.value <= 50
+                        chart.options.chart.yDomain1[1] = Math.ceil((_max.value + (0.4 * _max.value)) / 10) * 10
                     else if _max.value <= 100
-                        chart.options.chart.yDomain1 = [0, 100]
+                        chart.options.chart.yDomain1[1] = 100
                     else
-                        chart.options.chart.yDomain1 = [0, Math.ceil(_max.value / 10) * 10]
+                        chart.options.chart.yDomain1[1] = Math.ceil(_max.value / 10) * 10
                 else
-                    chart.options.chart.yDomain1 = [0, d3.max p, (d) -> d.value]
+                    chart.options.chart.yDomain1[1] = d3.max p, (d) -> d.value
                 for group in _groups
                     cdata = angular.copy(_cdata)
                     cdata.values = _.filter p, (i) -> _.isEqual(_.sortBy(group), _.sortBy(i.groups))
