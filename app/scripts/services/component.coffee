@@ -82,7 +82,9 @@ angular.module 'dgsDash'
                 if _min.value < 0
                     chart.options.chart.yDomain1[0] = _min.value
                 if component.value_unit is 'percent'
-                    if _max.value <= 1
+                    if _min.value < 0
+                        chart.options.chart.yDomain1[1] = _max.value
+                    else if _max.value <= 1
                         chart.options.chart.yDomain1[1] = _max.value + 0.1
                     else if _max.value <= 10
                         chart.options.chart.yDomain1[1] = 10
