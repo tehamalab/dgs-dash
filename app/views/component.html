@@ -1,14 +1,8 @@
 <div class="page-header-dg">
     <div class="container">
         <div class="row">
-            <div ng-if="component.image_medium" class="col-sm-2 text-center">
+            <div class="col-sm-2 text-center">
                 <img  class="img-responsive" ng-src="{{ component.image_medium }}">
-            </div>
-            <div ng-if="!component.image_medium" class="col-sm-2 text-center">
-                <div class="jumbotron jumbotron-no-pad">
-                    <h3 class="text-uppercase text-muted" translate>Component</h3>
-                    <h1>{{ component.code }}</h1>
-                </div>
             </div>
             <div class="col-sm-8">
                 <h1><strong>{{ component.name }}</strong></h1>
