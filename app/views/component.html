@@ -88,7 +88,8 @@
                                 <tbody>
                                     <tr ng-repeat="p in progress">
                                         <td>{{ p.area_name }}</td>
-                                        <td>{{ p.year }}</td>
+                                        <td ng-if="component.extras.frequency != 'fiscal year'">{{ p.year }}</td>
+                                        <td ng-if="component.extras.frequency == 'fiscal year'">{{ p.fiscal_year }}</td>
                                         <td class="text-right">{{ p.value|number }}</td>
                                         <td class="text-center">{{ p.groups.join(', ') }}</td>
                                     </tr>

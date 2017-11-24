@@ -96,6 +96,10 @@ angular.module 'dgsDash'
                         chart.options.chart.yDomain1[1] = Math.ceil(_max.value / 10) * 10
                 else
                     chart.options.chart.yDomain1[1] = d3.max p, (d) -> d.value
+
+                if component.extras.frequency == 'fiscal year'
+                    chart.options.chart.xAxis.tickFormat = (d) -> "#{d}-#{d+1}"
+
                 for group in _groups
                     cdata = angular.copy(_cdata)
                     cdata.values = _.filter p, (i) -> _.isEqual(_.sortBy(group), _.sortBy(i.groups))
