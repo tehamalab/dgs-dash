@@ -97,7 +97,7 @@ angular.module 'dgsDash'
                 else
                     chart.options.chart.yDomain1[1] = d3.max p, (d) -> d.value
 
-                if component.extras.frequency == 'fiscal year'
+                if component.extras.frequency.toLowerCase() == 'fiscal year'
                     chart.options.chart.xAxis.tickFormat = (d) -> "#{d}-#{d+1}"
 
                 for group in _groups
