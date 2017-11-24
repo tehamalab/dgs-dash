@@ -38,7 +38,6 @@ angular.module 'dgsDash'
                 sector: 'Sectors/Sub-sectors'
                 target: 'Targets'
                 indicator: 'Indicators'
-                component: 'Components'
 
             if _.isEmpty(lookup.search)
                 lookup.search = $location.search()
