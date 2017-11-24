@@ -81,7 +81,12 @@
                                                 </strong>
                                                 <div>
                                                     <strong class="text-info">{{ indicator.progress_preview[0].extras.area_name }}</strong><br>
-                                                    {{ indicator.progress_preview[0].year }}
+                                                    <span ng-if="indicator.progress_preview[0].fiscal_year">
+                                                        {{ indicator.progress_preview[0].fiscal_year }}
+                                                    </span>
+                                                    <span ng-if="!indicator.progress_preview[0].fiscal_year">
+                                                        {{ indicator.progress_preview[0].year }}
+                                                    </span>
                                                     <span  ng-if="indicator.progress_preview[0].groups.length">
                                                         ({{ indicator.progress_preview[0].groups.join(', ') }})
                                                     </span>
