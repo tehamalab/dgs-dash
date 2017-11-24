@@ -64,6 +64,22 @@
             </div>
         </div>
 
+        <div id="components-maps">
+            <div ng-repeat="map in component.maps" class="panel panel-default">
+                <div class="page-header">
+                    <a class="text-default" ng-href="/components/{{ component.id }}/{{ component.slug }}">
+                        <h2 class="text-center">
+                            <strong>{{ map.title }}</strong>
+                            <span class="text-info" ng-if="component.value_unit">({{ component.value_unit }})</span>
+                        </h2>
+                    </a>
+                </div>
+                <leaflet id="{{ map.id }}" style="height: 500px;background:#EEE;display:block"
+                        defaults="map.options.defaults" lf-center="map.options.center">
+                </leaflet>
+            </div>
+        </div>
+
         <div id="components-tables">
             <div>
                 <div ng-repeat="(areaType, progress) in component.progress">

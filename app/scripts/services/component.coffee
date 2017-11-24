@@ -50,7 +50,7 @@ angular.module 'dgsDash'
                 lng: 34.6287
                 zoom: 6
             color:
-                primary: '#EEEEEE'
+                primary: '#1F77B5'
 
         angular.extend this, $resource settings.API_ROOT_URL + "/components/:id/", {},
             query:
