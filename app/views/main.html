@@ -150,7 +150,11 @@
         </div>
 
         <div class="row" ng-if="plan.goals.length">
-            <div ng-repeat="goal in plan.goals" class="col-sm-2 col-no-pad"><a ng-href="/#!/goals/{{ goal.id }}/{{ goal.slug }}"><img ng-src="{{ goal.image_medium }}" class="sdg-img"></a></div>
+            <div ng-repeat="goal in plan.goals" class="col-sm-2 col-no-pad">
+                <a ng-href="/goals/{{ goal.id }}/{{ goal.slug }}">
+                    <img ng-src="{{ goal.image_medium }}" class="sdg-img">
+                </a>
+            </div>
         </div>
 
     </div>
