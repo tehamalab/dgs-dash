@@ -86,7 +86,7 @@ angular.module 'dgsDash'
                 return ''
 
         $scope.goto_object = (_type, args) ->
-            path = $scope.object_url(_type, args)
+            path = $scope.objectUrl(_type, args)
             if path 
                 $location.url path
 
